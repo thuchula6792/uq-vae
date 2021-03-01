@@ -1,3 +1,8 @@
+# Paper:
+* The paper associated with this code is titled
+  "Solving Bayesian Inverse Problems via Variational Autoencoders"
+  and can be found at: https://arxiv.org/abs/1912.04212
+
 # Code Structure:
 * Below is a description of the source codes as well as the key codes in my
   input/output system.
