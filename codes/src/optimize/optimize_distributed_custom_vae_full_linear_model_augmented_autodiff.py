@@ -51,11 +51,15 @@ def optimize_distributed(dist_strategy,
                     tf.linalg.LinearOperatorFullMatrix(prior_cov_inv)])
 
     #=== Kronecker Product of Identity and Likelihood Matrix ===#
-    likelihood_matrix = tf.linalg.matmul(
-                            tf.transpose(tf.linalg.matmul(measurement_matrix,forward_matrix)),
-                            tf.linalg.matmul(
-                                tf.linalg.diag(tf.squeeze(noise_regularization_matrix)),
-                                tf.linalg.matmul(measurement_matrix,forward_matrix)))
+    if measurement_matrix.shape == (1,1):
+        likelihood_matrix = tf.linalg.matmul(tf.transpose(forward_matrix),
+                                    noise_regularization_matrix*forward_matrix)
+    else:
+        likelihood_matrix = tf.linalg.matmul(
+                                tf.transpose(tf.linalg.matmul(measurement_matrix,forward_matrix)),
+                                tf.linalg.matmul(
+                                    tf.linalg.diag(tf.squeeze(noise_regularization_matrix)),
+                                    tf.linalg.matmul(measurement_matrix,forward_matrix)))
     identity_otimes_likelihood_matrix =\
             tf.linalg.LinearOperatorKronecker(
                     [tf.linalg.LinearOperatorFullMatrix(tf.eye(latent_dimension)),
