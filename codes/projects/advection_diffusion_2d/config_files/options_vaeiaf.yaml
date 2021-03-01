@@ -1,0 +1,69 @@
+#=== Use Resnet ===#
+resnet : False
+
+#=== IAF Type ===#
+iaf_lstm_update : False
+
+#=== Load Dataset Size ===#
+num_data_train_load : 10000
+num_data_test_load : 200
+num_data_test : 200
+
+#=== Data Properties ===#
+parameter_dimensions : 450
+obs_type : "obs"
+num_obs_points : 10
+
+#=== Noise Properties ===#
+add_noise : False
+noise_level : 0.05
+num_noisy_obs : 10
+num_noisy_obs_unregularized : 0
+
+#=== BiLaplacian Prior Properties ===#
+prior_type_blp_reg : True
+prior_mean_blp_reg : 0.25
+prior_gamma_blp_reg : 1
+prior_delta_blp_reg : 8
+
+prior_type_blp_train : True
+prior_mean_blp_train : 0.25
+prior_gamma_blp_train : 1
+prior_delta_blp_train : 8
+
+prior_type_blp_test : True
+prior_mean_blp_test : 0.25
+prior_gamma_blp_test : 1
+prior_delta_blp_test : 8
+
+#=== Autocorrelation Prior Properties ===#
+prior_type_ac_reg : False
+prior_mean_ac_reg : 0
+prior_variance_ac_reg : 2.0
+prior_corr_ac_reg : 0.2
+
+prior_type_ac_train : False
+prior_mean_ac_train : 0
+prior_variance_ac_train : 2.0
+prior_corr_ac_train : 0.2
+
+prior_type_ac_test : False
+prior_mean_ac_test : 0
+prior_variance_ac_test : 2.0
+prior_corr_ac_test : 0.2
+
+#=== PDE Properties ===#
+kappa : 0.001
+
+#=== Time Properties ===#
+time_stepping_erk4 : False
+time_stepping_lserk4 : False
+time_stepping_implicit : True
+time_initial : 0
+time_final : 4
+time_1 : 1
+time_dt : 0.1
+time_obs : 0.2
+
+#=== Random Seed ===#
+random_seed : 4

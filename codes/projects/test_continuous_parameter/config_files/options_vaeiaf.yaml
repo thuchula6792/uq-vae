@@ -1,0 +1,52 @@
+#=== Data Type ===#
+discrete_polynomial : True
+discrete_exponential : False
+
+#=== Use Resnet ===#
+resnet : False
+
+#=== IAF Type ===#
+iaf_lstm_update : True
+
+#=== Load Dataset Size ===#
+num_data_train_load : 200
+num_data_test_load : 200
+num_data_test : 200
+
+#=== Data Properties ===#
+parameter_dimensions : 11
+obs_type : "obs"
+num_obs_points : 5
+
+#=== Noise Properties ===#
+add_noise : True
+noise_level : 0.01
+num_noisy_obs : 5
+num_noisy_obs_unregularized : 0
+
+#=== Identity Prior ===#
+prior_type_identity_reg : False
+prior_mean_identity_reg : 0
+prior_type_identity_train : False
+prior_mean_identity_train : 0
+prior_type_identity_test : False
+prior_mean_identity_test : 0
+
+#=== Full Prior ===#
+prior_type_diag_reg : False
+prior_mean_diag_reg : 2
+prior_type_diag_train : False
+prior_mean_diag_train : 2
+prior_type_diag_test : False
+prior_mean_diag_test : 2
+
+#=== Diagonal Prior ===#
+prior_type_full_reg : True
+prior_mean_full_reg : 2
+prior_type_full_train : True
+prior_mean_full_train : 2
+prior_type_full_test : True
+prior_mean_full_test : 2
+
+#=== Random Seed ===#
+random_seed : 4

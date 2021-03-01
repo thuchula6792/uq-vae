@@ -1,0 +1,42 @@
+#=== Data Type ===#
+continuous_linear_sin : False
+continuous_linear_uniform : True
+
+#=== Use Resnet ===#
+resnet : False
+
+#=== Load Dataset Size ===#
+num_data_train_load : 5000
+num_data_test_load : 200
+num_data_test : 200
+
+#=== Data Properties ===#
+mesh_dimensions : 10
+parameter_dimensions : 10
+obs_type : "obs"
+num_obs_points : 1
+
+#=== Noise Properties ===#
+add_noise : True
+noise_level : 0.01
+num_noisy_obs : 1
+num_noisy_obs_unregularized : 0
+
+#=== Identity Prior ===#
+prior_type_identity_reg : True
+prior_mean_identity_reg : 1
+prior_type_identity_train : True
+prior_mean_identity_train : 1
+prior_type_identity_test : True
+prior_mean_identity_test : 1
+
+#=== Laplacian Prior ===#
+prior_type_laplacian_reg : False
+prior_mean_laplacian_reg : 1
+prior_type_laplacian_train : False
+prior_mean_laplacian_train : 1
+prior_type_laplacian_test : False
+prior_mean_laplacian_test : 1
+
+#=== Random Seed ===#
+random_seed : 4

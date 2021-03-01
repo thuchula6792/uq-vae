@@ -1,0 +1,44 @@
+#=== Use Resnet ===#
+resnet : False
+
+#=== Load Dataset Size ===#
+num_data_train_load : 10000
+num_data_test_load : 200
+num_data_test : 200
+
+#=== Data Properties ===#
+parameter_dimensions : 1728
+obs_type : "obs"
+num_obs_points : 728
+
+#=== Noise Properties ===#
+add_noise : True
+noise_level : 0.05
+num_noisy_obs : 364
+num_noisy_obs_unregularized : 364
+
+#=== Autocorrelation Prior Properties ===#
+prior_type_AC_train : True
+prior_mean_AC_train : 2
+prior_variance_AC_train : 2.0
+prior_corr_AC_train : 0.5
+
+prior_type_AC_test : True
+prior_mean_AC_test : 2
+prior_variance_AC_test : 2.0
+prior_corr_AC_test : 0.5
+
+#=== Matern Prior Properties ===#
+prior_type_matern_train : False
+prior_kern_type_train : "m32"
+prior_cov_length_train : 0.5
+
+prior_type_matern_test : False
+prior_kern_type_test : "m32"
+prior_cov_length_test : 0.5
+
+boundary_matrix_constant : 0.5
+load_vector_constant : -1
+
+#=== Random Seed ===#
+random_seed : 4

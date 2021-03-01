@@ -1,0 +1,44 @@
+#=== Use Resnet ===#
+resnet : False
+
+#=== Load Dataset Size ===#
+num_data_train_load : 200
+num_data_test_load : 200
+num_data_test : 200
+
+#=== Data Properties ===#
+parameter_dimensions : 11
+obs_type : "obs"
+num_obs_points : 5
+
+#=== Noise Properties ===#
+add_noise : True
+noise_level : 0.01
+num_noisy_obs : 5
+num_noisy_obs_unregularized : 0
+
+#=== Identity Prior Properties ===#
+prior_type_identity_reg : False
+
+#=== Laplacian Prior Properties ===#
+prior_type_lp_reg : True
+prior_mean_lp_reg : 4
+prior_gamma_lp_reg : 0.1
+prior_delta_lp_reg : 1.0
+
+prior_type_lp_train : True
+prior_mean_lp_train : 4
+prior_gamma_lp_train : 0.1
+prior_delta_lp_train : 1.0
+
+prior_type_lp_test : True
+prior_mean_lp_test : 4
+prior_gamma_lp_test : 0.1
+prior_delta_lp_test : 1.0
+
+#=== Boundary Conditions ===#
+boundary_conditions_dirichlet : True
+boundary_conditions_neumann : False
+
+#=== Random Seed ===#
+random_seed : 4

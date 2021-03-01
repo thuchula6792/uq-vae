@@ -1,0 +1,14 @@
+#=== Neural Network Architecture ===#
+num_hidden_layers_encoder : 5
+num_hidden_layers_decoder : 2
+num_hidden_nodes_encoder  : 500
+num_hidden_nodes_decoder  : 500
+activation                : "relu"
+
+#=== Penalties ===#
+penalty_js                : 0.1
+
+#=== Data ===#
+num_data_train            : 1000
+batch_size                : 100
+num_epochs                : 400

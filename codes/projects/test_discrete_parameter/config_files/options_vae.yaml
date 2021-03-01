@@ -1,0 +1,42 @@
+#=== Data Type ===#
+discrete_polynomial : True
+discrete_exponential : False
+
+#=== Use Resnet ===#
+resnet : False
+
+#=== Load Dataset Size ===#
+num_data_train_load : 5000
+num_data_test_load : 200
+num_data_test : 200
+
+#=== Data Properties ===#
+mesh_dimensions : 100
+parameter_dimensions : 2
+obs_type : "obs"
+num_obs_points : 20
+
+#=== Noise Properties ===#
+add_noise : True
+noise_level : 0.01
+num_noisy_obs : 20
+num_noisy_obs_unregularized : 0
+
+#=== Full Prior ===#
+prior_type_diag_reg : False
+prior_mean_diag_reg : 4
+prior_type_diag_train : False
+prior_mean_diag_train : 4
+prior_type_diag_test : False
+prior_mean_diag_test : 4
+
+#=== Diagonal Prior ===#
+prior_type_full_reg : True
+prior_mean_full_reg : 4
+prior_type_full_train : True
+prior_mean_full_train : 4
+prior_type_full_test : True
+prior_mean_full_test : 4
+
+#=== Random Seed ===#
+random_seed : 4
