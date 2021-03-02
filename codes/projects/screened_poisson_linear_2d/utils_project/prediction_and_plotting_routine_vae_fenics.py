@@ -70,9 +70,9 @@ def predict_and_plot(hyperp, options, filepaths):
                        options.parameter_dimensions, obs_dimensions)
     data.load_data_test()
     if options.add_noise == True:
-        data.add_noise_output_test()
-    parameter_test = data.input_test
-    state_obs_test = data.output_test
+        data.add_noise_qoi_test()
+    parameter_test = data.poi_test
+    state_obs_test = data.qoi_test
 
     #=== Load Trained Neural Network ===#
     NN = VAE(hyperp, options,
@@ -87,10 +87,10 @@ def predict_and_plot(hyperp, options, filepaths):
     state_obs_test_sample = np.expand_dims(state_obs_test[sample_number,:], 0)
 
     #=== Saving Specific Sample ===#
-    df_input_specific = pd.DataFrame({'input_specific': parameter_test_sample.flatten()})
-    df_input_specific.to_csv(filepaths.input_specific + '.csv', index=False)
-    df_output_specific = pd.DataFrame({'output_specific': state_obs_test_sample.flatten()})
-    df_output_specific.to_csv(filepaths.output_specific + '.csv', index=False)
+    df_poi_specific = pd.DataFrame({'poi_specific': parameter_test_sample.flatten()})
+    df_poi_specific.to_csv(filepaths.poi_specific + '.csv', index=False)
+    df_qoi_specific = pd.DataFrame({'qoi_specific': state_obs_test_sample.flatten()})
+    df_qoi_specific.to_csv(filepaths.qoi_specific + '.csv', index=False)
 
     #=== Predictions ===#
     start_time_NN = time.time()

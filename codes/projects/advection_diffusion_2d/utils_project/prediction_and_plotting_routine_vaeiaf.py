@@ -44,9 +44,9 @@ def predict_and_plot(hyperp, options, filepaths):
                        options.parameter_dimensions, obs_dimensions)
     data.load_data_specific()
     if options.add_noise == 1:
-        data.add_noise_output_specific()
-    parameter_test = data.input_specific
-    state_obs_test = data.output_specific
+        data.add_noise_qoi_specific()
+    parameter_test = data.poi_specific
+    state_obs_test = data.qoi_specific
 
     #=== Load Trained Neural Network ===#
     NN = VAEIAF(hyperp, options,

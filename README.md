@@ -9,7 +9,7 @@
 * For an illustrative example, see the test cases in codes/projects/test_. To run
   this, use any of the training drivers in codes/projects/test_/training_. You may
   have to first generate the training and testing data using
-  codes/projects/test_/data_generator/data_generator_.py.
+  codes/projects/test_/data_generator/data_generator.py.
 * However, there is no need to use my input/output system; you can use
   your own input/output codes so long as the appropriate calls to the neural
   networks in src/neural_networks and optimization routines in src/optimize are
@@ -33,7 +33,7 @@
                                         network and training related objects
 
 ## projects:
-* Contains project specific wrappers and routines. Note that drivers are agnostic to the project. Project dependent codes are all stored in utils_project
+* Contains project specific wrappers and routines. Note that the drivers are agnostic to the project. Project dependent codes are all stored in utils_project
 * drivers:
     * `training_.py`:                  Drives the training routine. Consists of the
                                        Hyperparameter class and calls the FilePaths class and the training_routine
@@ -41,7 +41,7 @@
     * `hyperparameter_optimizer_.py`:  Drives hyperparameter optimization for
                                        training neural networks. Utilizes scikit-optimize`s
                                        Bayesian optimization routines.
-    * `prediction_and_plotting.py`:    Drives the prediction and plotting routine given a trained neural
+    * `prediction_and_plotting_.py`:    Drives the prediction and plotting routine given a trained neural
                                        network
     * `scheduler_training_.py`:        Drives the formation of hyperparameter combinations
                                        and schedule of training routines using mpi4py
@@ -55,7 +55,7 @@
 	* `hyperparameter_optimization_training_routine_*.py`: Optimization
                                 routine for Bayesian hyperparameter
                                 optimization
-	* `prediction_and_plotting_ routine.py`:  Prediction routine; using trained network,
+	* `prediction_and_plotting_routine.py`:  Prediction routine; using trained network,
                                 form and save predictions given trained
                                 neural network
 

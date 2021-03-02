@@ -70,9 +70,9 @@ def predict_and_plot(hyperp, options, filepaths):
                        options.parameter_dimensions, obs_dimensions)
     data.load_data_test()
     if options.add_noise == 1:
-        data.add_noise_output_test()
-    parameter_test = data.input_test
-    state_obs_test = data.output_test
+        data.add_noise_qoi_test()
+    parameter_test = data.poi_test
+    state_obs_test = data.qoi_test
 
     epoch_list = np.arange(0,320,5)
 
