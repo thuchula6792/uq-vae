@@ -66,40 +66,40 @@ class FilePathsProject:
         self.obs_indices = directory_dataset +\
                 project_name + 'obs_indices_' +\
                 'o%d_'%(options.num_obs_points) + data_options
-        self.input_train = directory_dataset +\
+        self.poi_train = directory_dataset +\
                 project_name +\
                 'parameter_train_' +\
                 'd%d_'%(options.num_data_train_load) + data_options + '_' + prior_string_train
-        self.input_test = directory_dataset +\
+        self.poi_test = directory_dataset +\
                 project_name +\
                 'parameter_test_' +\
                 'd%d_'%(options.num_data_test_load) + data_options + '_' + prior_string_test
-        self.input_specific = directory_dataset +\
+        self.poi_specific = directory_dataset +\
                 project_name + 'parameter_blob_' + data_options
         if options.obs_type == 'full':
-            self.output_train = directory_dataset +\
+            self.qoi_train = directory_dataset +\
                     project_name +\
                     'state_' + options.obs_type + '_train_' +\
                     'd%d_'%(options.num_data_train_load) + data_options + '_' + prior_string_train
-            self.output_test = directory_dataset +\
+            self.qoi_test = directory_dataset +\
                     project_name +\
                     'state_' + options.obs_type + '_test_' +\
                     'd%d_'%(options.num_data_test_load) + data_options + '_' + prior_string_test
-            self.output_specific = directory_dataset +\
+            self.qoi_specific = directory_dataset +\
                                 project_name + 'state_' + options.obs_type + '_blob_' +\
                                 data_options
         if options.obs_type == 'obs':
-            self.output_train = directory_dataset +\
+            self.qoi_train = directory_dataset +\
                     project_name +\
                     'state_' + options.obs_type + '_train_' +\
                     'o%d_d%d_' %(options.num_obs_points, options.num_data_train_load) +\
                     data_options + '_' + prior_string_train
-            self.output_test = directory_dataset +\
+            self.qoi_test = directory_dataset +\
                     project_name +\
                     'state_' + options.obs_type + '_test_' +\
                     'o%d_d%d_' %(options.num_obs_points, options.num_data_test_load) +\
                     data_options + '_' + prior_string_test
-            self.output_specific = directory_dataset +\
+            self.qoi_specific = directory_dataset +\
                                 project_name + 'state_' + options.obs_type + '_blob_' +\
                                 'o%d_'%(options.num_obs_points) +\
                                 data_options

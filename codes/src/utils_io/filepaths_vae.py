@@ -24,12 +24,12 @@ class FilePaths():
         self.project = project_paths
 
         #=== Datasets ===#
-        self.input_train = project_paths.input_train
-        self.input_test = project_paths.input_test
-        self.input_specific = project_paths.input_specific
-        self.output_train = project_paths.output_train
-        self.output_test = project_paths.output_test
-        self.output_specific = project_paths.output_specific
+        self.poi_train = project_paths.poi_train
+        self.poi_test = project_paths.poi_test
+        self.poi_specific = project_paths.poi_specific
+        self.qoi_train = project_paths.qoi_train
+        self.qoi_test = project_paths.qoi_test
+        self.qoi_specific = project_paths.qoi_specific
 
         #=== Prior ===#
         self.prior_string_reg = project_paths.prior_string_reg

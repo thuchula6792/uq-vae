@@ -25,8 +25,8 @@ def construct_data_dict(hyperp, options, filepaths):
     data.load_data_train()
     data.load_data_test()
     if options.add_noise == True:
-        data.add_noise_output_train()
-        data.add_noise_output_test()
+        data.add_noise_qoi_train()
+        data.add_noise_qoi_test()
         noise_regularization_matrix = data.construct_noise_regularization_matrix_train()
         noise_regularization_matrix = np.expand_dims(noise_regularization_matrix, axis=0)
     else:
@@ -36,10 +36,10 @@ def construct_data_dict(hyperp, options, filepaths):
     data_dict = {}
     data_dict["obs_dimensions"] = obs_dimensions
     data_dict["obs_indices"] = obs_indices
-    data_dict["parameter_train"] = data.input_train
-    data_dict["state_obs_train"] = data.output_train
-    data_dict["parameter_test"] = data.input_test
-    data_dict["state_obs_test"] = data.output_test
+    data_dict["parameter_train"] = data.poi_train
+    data_dict["state_obs_train"] = data.qoi_train
+    data_dict["parameter_test"] = data.poi_test
+    data_dict["state_obs_test"] = data.qoi_test
     data_dict["noise_regularization_matrix"] = noise_regularization_matrix
 
     return data_dict

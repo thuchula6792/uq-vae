@@ -7,7 +7,7 @@ num_data_test_load : 200
 num_data_test : 200
 
 #=== Data Properties ===#
-parameter_dimensions : 2601
+parameter_dimensions : 256
 obs_type : "obs"
 num_obs_points : 10
 
