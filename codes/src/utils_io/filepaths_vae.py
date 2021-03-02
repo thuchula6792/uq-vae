@@ -57,8 +57,7 @@ class FilePaths():
         if "posterior_diagonal_covariance" in options:
             self.NN_name = autoencoder_type + '_' + forward_model_type + resnet +\
                 self.prior_string_reg +\
-                '_urg%d_hle%d_hld%d_hne%d_hnd%d_%s_pjs%s_d%d_b%d_e%d' %(
-                        options.num_noisy_obs_unregularized,
+                '_hle%d_hld%d_hne%d_hnd%d_%s_pjs%s_d%d_b%d_e%d' %(
                         hyperp.num_hidden_layers_encoder, hyperp.num_hidden_layers_decoder,
                         hyperp.num_hidden_nodes_encoder, hyperp.num_hidden_nodes_decoder,
                         hyperp.activation,
@@ -68,8 +67,7 @@ class FilePaths():
         if "posterior_full_covariance" in options:
             self.NN_name = autoencoder_type + '_full_' + forward_model_type + resnet +\
                 self.prior_string_reg +\
-                '_urg%d_hle%d_hld%d_hne%d_hnd%d_%s_pjs%s_d%d_b%d_e%d' %(
-                        options.num_noisy_obs_unregularized,
+                '_hle%d_hld%d_hne%d_hnd%d_%s_pjs%s_d%d_b%d_e%d' %(
                         hyperp.num_hidden_layers_encoder, hyperp.num_hidden_layers_decoder,
                         hyperp.num_hidden_nodes_encoder, hyperp.num_hidden_nodes_decoder,
                         hyperp.activation,
@@ -83,9 +81,8 @@ class FilePaths():
                 iaf_type_string = 'IAF_'
             self.NN_name = autoencoder_type + iaf_type_string + forward_model_type + resnet +\
                 self.prior_string_reg +\
-                '_urg%d_hle%d_hld%d_hne%d_hnd%d_%s_hli%d_hni%d_%s_pjs%s_d%d_b%d_e%d'\
-                %(options.num_noisy_obs_unregularized,
-                  hyperp.num_hidden_layers_encoder, hyperp.num_hidden_layers_decoder,
+                '_hle%d_hld%d_hne%d_hnd%d_%s_hli%d_hni%d_%s_pjs%s_d%d_b%d_e%d'\
+                %(hyperp.num_hidden_layers_encoder, hyperp.num_hidden_layers_decoder,
                   hyperp.num_hidden_nodes_encoder, hyperp.num_hidden_nodes_decoder,
                   hyperp.activation,
                   hyperp.num_iaf_transforms, hyperp.num_hidden_nodes_iaf,

@@ -30,7 +30,7 @@ class FilePathsProject:
             obs_string = 'obs_o%d'%(options.num_obs_points)
         if options.add_noise == 1:
             noise_level_string = value_to_string(options.noise_level)
-            noise_string = 'ns%s_%d'%(noise_level_string,options.num_noisy_obs)
+            noise_string = 'ns%s_%d'%(noise_level_string,options.num_obs_points)
         else:
             noise_string = 'ns0'
         data_string = data_options + '_' + obs_string + '_' + noise_string + '_'

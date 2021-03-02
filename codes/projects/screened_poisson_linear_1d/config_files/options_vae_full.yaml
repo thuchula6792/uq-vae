@@ -14,8 +14,6 @@ num_obs_points : 5
 #=== Noise Properties ===#
 add_noise : True
 noise_level : 0.01
-num_noisy_obs : 5
-num_noisy_obs_unregularized : 0
 
 #=== Identity Prior Properties ===#
 prior_type_identity_reg : False

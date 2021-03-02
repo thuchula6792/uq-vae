@@ -33,8 +33,6 @@ class DataHandler:
         self.noise_level = options.noise_level
         self.obs_indices = obs_indices
         self.num_obs_points = options.num_obs_points
-        self.num_noisy_obs = options.num_noisy_obs
-        self.num_noisy_obs_unregularized = options.num_noisy_obs_unregularized
         self.dampening_scalar = 0.001
 
         #=== Random Seed ===#
@@ -101,12 +99,7 @@ class DataHandler:
     def add_noise(self, data, data_max):
         #=== Add Noise ===#
         np.random.seed(self.random_seed)
-        noisy_obs = np.random.choice(
-                range(0, data.shape[1]), self.num_noisy_obs , replace=False)
-        non_noisy_obs = np.setdiff1d(range(0, self.num_obs_points), noisy_obs)
-
         noise = np.random.normal(0, 1, data.shape)
-        noise[:, non_noisy_obs] = self.dampening_scalar*noise[:, non_noisy_obs]
         data += self.noise_level*data_max*noise
 
         return data
@@ -122,15 +115,7 @@ class DataHandler:
     def construct_noise_regularization_matrix(self, data, data_max):
         #=== Noise Regularization Matrix ===#
         np.random.seed(self.random_seed)
-        noisy_obs = np.random.choice(
-                range(0, data.shape[1]), self.num_noisy_obs , replace=False)
-        non_noisy_obs = np.setdiff1d(range(0, self.num_obs_points), noisy_obs)
         diagonal = 1/(self.noise_level*data_max)*np.ones(data.shape[1])
-
-        if self.num_noisy_obs_unregularized != 0:
-            diagonal[non_noisy_obs[0:self.num_noisy_obs_unregularized]] =\
-                    (1/self.dampening_scalar)*\
-                    diagonal[non_noisy_obs[0:self.num_noisy_obs_unregularized]]
 
         return diagonal.astype(np.float32)
 

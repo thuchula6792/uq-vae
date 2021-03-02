@@ -14,8 +14,6 @@ num_obs_points : 10
 #=== Noise Properties ===#
 add_noise : True
 noise_level : 0.1
-num_noisy_obs : 10
-num_noisy_obs_unregularized : 0
 
 #=== BiLaplacian Prior Properties ===#
 prior_type_blp_reg : True

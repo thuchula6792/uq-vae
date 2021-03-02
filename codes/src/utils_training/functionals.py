@@ -56,14 +56,14 @@ def loss_weighted_post_cov_full_penalized_difference(true, pred,
     batched_value = weighted_inner_product_chol_solve(
                         tf.transpose(tf.reshape(
                             post_cov_chol[0,:], (true.shape[1], true.shape[1]))),
-                            tf.expand_dims(true[0,:] - pred[0,:], axis=1))
+                        tf.expand_dims(true[0,:] - pred[0,:], axis=1))
     for m in range(1, true.shape[0]):
         batched_value = tf.concat(
                 [batched_value,
                 weighted_inner_product_chol_solve(
                     tf.transpose(tf.reshape(
                         post_cov_chol[m,:], (true.shape[1], true.shape[1]))),
-                        tf.expand_dims(true[m,:] - pred[m,:], axis=1))], axis=0)
+                    tf.expand_dims(true[m,:] - pred[m,:], axis=1))], axis=0)
     return penalty*batched_value
 
 def weighted_inner_product_chol_solve(weight_matrix, vector):
