@@ -7,9 +7,9 @@
 * Below is a description of the source codes as well as the key codes in my
   input/output system.
 * For an illustrative example, see the test cases in codes/projects/test_. To run
-  this, use any of the training drivers in codes/projects/test_/training_. You may
+  this, use any of the training drivers in codes/projects/test_/`training_.py`. You may
   have to first generate the training and testing data using
-  codes/projects/test_/data_generator/data_generator.py.
+  codes/projects/test_/data_generator/`data_generator.py`.
 * However, there is no need to use my input/output system; you can use
   your own input/output codes so long as the appropriate calls to the neural
   networks in src/neural_networks and optimization routines in src/optimize are
@@ -21,7 +21,7 @@
                                         from loaded data using Tensorflow's Dataset
                                         API
 * `nn_.py`:                             The neural network
-* `loss_and_relative_errors.py`:        Functionals that form the overall loss
+* `functionals.py`:                     Functionals that form the overall loss
                                         functional
 * `optimize_.py`:                       The optimization routine for the neural network
 * `metrics_.py`:                        Class storing and updating the optimization information
@@ -38,10 +38,10 @@
     * `training_.py`:                  Drives the training routine. Consists of the
                                        Hyperparameter class and calls the FilePaths class and the training_routine
                                        method
-    * `hyperparameter_optimizer_.py`:  Drives hyperparameter optimization for
+    * `hyperparameter_optimization_.py`: Drives hyperparameter optimization for
                                        training neural networks. Utilizes scikit-optimize`s
                                        Bayesian optimization routines.
-    * `prediction_and_plotting_.py`:    Drives the prediction and plotting routine given a trained neural
+    * `prediction_and_plotting_.py`:   Drives the prediction and plotting routine given a trained neural
                                        network
     * `scheduler_training_.py`:        Drives the formation of hyperparameter combinations
                                        and schedule of training routines using mpi4py
@@ -52,7 +52,7 @@
                                 training routine
 	* `training_routine_.py`:   Loads the data, constructs the neural
                                 network and runs the optimization routine
-	* `hyperparameter_optimization_training_routine_*.py`: Optimization
+	* `hyperparameter_optimization_training_routine_.py`: Optimization
                                 routine for Bayesian hyperparameter
                                 optimization
 	* `prediction_and_plotting_routine.py`:  Prediction routine; using trained network,
