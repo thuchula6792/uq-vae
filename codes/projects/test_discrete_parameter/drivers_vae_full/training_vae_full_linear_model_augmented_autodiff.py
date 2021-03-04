@@ -21,8 +21,8 @@ from utils_io.filepaths_vae import FilePathsTraining
 from utils_project.filepaths_project import FilePathsProject
 from utils_project.construct_data_dict import construct_data_dict
 from utils_project.construct_prior_dict import construct_prior_dict
-from utils_project.training_routine_custom_vae_full_linear_model_augmented_autodiff\
-        import trainer_custom
+from utils_project.training_routine_vae_full_linear_model_augmented_autodiff\
+        import training
 
 import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"
 
@@ -78,5 +78,5 @@ if __name__ == "__main__":
                                       load_covariance_cholesky_inverse = False)
 
     #=== Initiate training ===#
-    trainer_custom(hyperp, options, filepaths,
-                   data_dict, prior_dict)
+    training(hyperp, options, filepaths,
+             data_dict, prior_dict)
