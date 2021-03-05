@@ -1,10 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Feb 21 16:37:09 2020
+'''Drives training of a neural network under the uq-vae framework
 
-@author: hwan
-"""
+The parameter-to-observable map is modelled
+
+In preparation for training the neural network, the code will:
+    1) Construct a dictionary containing the set hyperparameter values
+       read from the .yaml file
+    2) Construct a dictionary containing the set options
+       read from the .yaml file
+    3) Construct the project specific as well as neural-network related
+       filepaths class from the hyperp and options dictionaries
+    4) Construct a dictionary containing loaded training and testing data
+       and related objects
+    5) Construct a dictionary containing loaded prior related objects
+
+You will need to specify:
+    - In add_options():
+        - Whether to use distributed training
+        - Which gpus to utilize
+
+Outputs will be stored in the following directories:
+    - uq-vae/Trained_NNs/ for trained network and training metrics
+    - uq-vae/Tensorboard/ for Tensorboard training metrics
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import os
 import sys
 sys.path.insert(0, os.path.realpath('../../../src'))

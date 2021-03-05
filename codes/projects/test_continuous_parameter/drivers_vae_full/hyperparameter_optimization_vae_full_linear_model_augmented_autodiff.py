@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''Drives Bayesian hyperparameter optimization of specified hyperparameters
 
-The parameter-to-observable map is modelled
+The parameter-to-observable map is modelled and assumed to be linear
 The package scikit-opt is used for Bayesian hyperparameter optimization
 
 In preparation for optimization of hyperparameters, the code will:
@@ -52,7 +52,7 @@ from utils_hyperparameter_optimization.hyperparameter_optimization_routine\
 from utils_project.filepaths_project import FilePathsProject
 from utils_project.construct_data_dict import construct_data_dict
 from utils_project.construct_prior_dict import construct_prior_dict
-from utils_project.training_routine_vae_model_augmented_autodiff import training
+from utils_project.training_routine_vae_full_linear_model_augmented_autodiff import training
 
 # Import skopt code
 from skopt.space import Real, Integer, Categorical

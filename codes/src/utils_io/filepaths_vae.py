@@ -101,26 +101,26 @@ class FilePathsTraining(FilePaths):
         super(FilePathsTraining, self).__init__(*args, **kwargs)
 
         #=== Saving Trained Neural Network and Tensorboard ===#
-        self.directory_trained_NN = '../../../../Trained_NNs/' + self.case_and_NN_name
+        self.directory_trained_NN = '../../../../trained_nns/' + self.case_and_NN_name
         self.trained_NN = self.directory_trained_NN + '/' + self.NN_name
-        self.directory_tensorboard = '../../../../Tensorboard/' + self.case_and_NN_name
+        self.directory_tensorboard = '../../../../tensorboard/' + self.case_and_NN_name
 
 class FilePathsHyperparameterOptimization(FilePaths):
     def __init__(self, *args, **kwargs):
         super(FilePathsHyperparameterOptimization, self).__init__(*args, **kwargs)
 
         #=== Parent Directory ===#
-        self.directory_hyperp_opt = '../../../../Hyperparameter_Optimization'
+        self.directory_hyperp_opt = '../../../../hyperparameter_optimization'
 
         #=== Saving Trained Neural Network and Tensorboard ===#
-        self.directory_trained_NN = self.directory_hyperp_opt + '/Trained_NNs/' +\
+        self.directory_trained_NN = self.directory_hyperp_opt + '/trained_nns/' +\
                 self.case_and_NN_name
         self.trained_NN = self.directory_trained_NN + '/' + self.NN_name
-        self.directory_tensorboard = self.directory_hyperp_opt + '/Tensorboard/' +\
+        self.directory_tensorboard = self.directory_hyperp_opt + '/tensorboard/' +\
                 self.case_and_NN_name
 
         #=== Saving Hyperparameter Optimization Outputs  ===#
-        self.directory_hyperp_opt_outputs = self.directory_hyperp_opt + '/Outputs/' +\
+        self.directory_hyperp_opt_outputs = self.directory_hyperp_opt + '/outputs/' +\
                 self.case_name
         self.hyperp_opt_skopt_res = self.directory_hyperp_opt_outputs +\
                 '/hyperp_opt_result.pkl'
@@ -135,16 +135,16 @@ class FilePathsHyperparameterOptimization(FilePaths):
 
         #=== For Deleting Suboptimal Networks ===#
         self.directory_hyperp_opt_trained_NN_case = self.directory_hyperp_opt +\
-                '/Trained_NNs/' + self.case_name
+                '/trained_nns/' + self.case_name
         self.directory_hyperp_opt_tensorboard_case = self.directory_hyperp_opt +\
-                '/Tensorboard/' + self.case_name
+                '/tensorboard/' + self.case_name
 
 class FilePathsPredictionAndPlotting(FilePaths):
     def __init__(self, *args, **kwargs):
         super(FilePathsPredictionAndPlotting, self).__init__(*args, **kwargs)
 
         #=== File Path for Loading Trained Neural Network ===#
-        self.directory_trained_NN = '../../../../Trained_NNs/' + self.case_and_NN_name
+        self.directory_trained_NN = '../../../../trained_nns/' + self.case_and_NN_name
         self.trained_NN = self.directory_trained_NN + '/' + self.NN_name
 
         #=== File Path for Loading Displayable Test Data ===#
@@ -156,7 +156,7 @@ class FilePathsPredictionAndPlotting(FilePaths):
         self.state_pred = self.directory_trained_NN + '_state_pred'
 
         #=== File Path for Saving Figures ===#
-        self.directory_figures = '../../../../Figures/' + self.case_and_NN_name
+        self.directory_figures = '../../../../figures/' + self.case_and_NN_name
         self.figures = self.directory_figures + '/' + self.NN_name
         self.figure_parameter_test = self.directory_figures + '/parameter_test'
         self.figure_state_test = self.directory_figures+ '/state_test'
@@ -175,7 +175,7 @@ class FilePathsPredictionAndPlotting(FilePaths):
         self.figure_vtk_state_pred = self.directory_figures + '/state_pred'
 
         #=== File Path for Movie ===#
-        self.directory_movie = '../../../../Movies/' + self.case_and_NN_name
+        self.directory_movie = '../../../../movies/' + self.case_and_NN_name
         self.figure_posterior_mean_movie = self.directory_movie +\
                 '/posterior_mean_movie'
         self.figure_parameter_cross_section_movie = self.directory_movie +\

@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Wed Sep 18 20:53:06 2019
+'''Schedules hyperparameter scenarios and drives training
 
-@author: Jon Wittmer
-"""
+You will need to specify:
+    - In generate_scenarios_list() the set of hyperparameter scenarios you
+      wish to use
+    - In subprocess.Popen() whether the parameter-to-observable map is
+      modelled or learned through specification of which training
+      driver to call
 
+Author: Jonathan Wittmer, Oden Institute, Austin, Texas 2019
+'''
 import os
 import sys
 sys.path.insert(0, os.path.realpath('../../../src'))

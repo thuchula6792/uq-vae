@@ -1,9 +1,37 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Feb 25 13:51:00 2020
-@author: hwan
-"""
+'''Drives Bayesian hyperparameter optimization of specified hyperparameters
+
+The parameter-to-observable map is modelled
+The package scikit-opt is used for Bayesian hyperparameter optimization
+
+In preparation for optimization of hyperparameters, the code will:
+    1) Construct a dictionary containing the set hyperparameter values
+       read from the .yaml file
+    2) Construct a dictionary containing the set options
+       read from the .yaml file
+    3) Construct the project specific as well as neural-network related
+       filepaths class from the hyperp and options dictionaries
+    4) Construct a dictionary containing loaded training and testing data
+       and related objects
+    5) Construct a dictionary containing loaded prior related objects
+
+You will need to specify:
+    - In add_options():
+        - Whether to use distributed training
+        - Which gpus to utilize
+    - Number of neural networks of to be trained through setting the number of
+      calls of the training routine
+    - The hyperparameters of interest and their corresponding ranges
+
+Outputs will be stored in the following directories:
+    - uq-vae/hyperparameter_optimization/ which contains:
+        - /outputs/ for metrics and convergence data
+        - /trained_nns/ for the optimal trained network and associated training metrics
+        - /tensorboard/ for Tensorboard training metrics of the optimal network
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2021
+'''
 import os
 import sys
 sys.path.insert(0, os.path.realpath('../../../src'))

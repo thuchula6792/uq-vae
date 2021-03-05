@@ -1,10 +1,37 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Feb 25 13:51:00 2020
+'''Drives Bayesian hyperparameter optimization of specified hyperparameters
 
-@author: hwan
-"""
+The parameter-to-observable map is learned
+The package scikit-opt is used for Bayesian hyperparameter optimization
+
+In preparation for optimization of hyperparameters, the code will:
+    1) Construct a dictionary containing the set hyperparameter values
+       read from the .yaml file
+    2) Construct a dictionary containing the set options
+       read from the .yaml file
+    3) Construct the project specific as well as neural-network related
+       filepaths class from the hyperp and options dictionaries
+    4) Construct a dictionary containing loaded training and testing data
+       and related objects
+    5) Construct a dictionary containing loaded prior related objects
+
+You will need to specify:
+    - In add_options():
+        - Whether to use distributed training
+        - Which gpus to utilize
+    - Number of neural networks of to be trained through setting the number of
+      calls of the training routine
+    - The hyperparameters of interest and their corresponding ranges
+
+Outputs will be stored in the following directories:
+    - uq-vae/hyperparameter_optimization/ which contains:
+        - /outputs/ for metrics and convergence data
+        - /trained_nns/ for the optimal trained network and associated training metrics
+        - /tensorboard/ for Tensorboard training metrics of the optimal network
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import os
 import sys
 sys.path.insert(0, os.path.realpath('../../../src'))
@@ -77,19 +104,18 @@ if __name__ == "__main__":
         space.append(val)
 
     #=== Hyperparameters ===#
-    with open('../config_files/hyperparameters_vae.yaml') as f:
+    with open('../config_files/hyperparameters_vae_full.yaml') as f:
         hyperp = yaml.safe_load(f)
     hyperp = AttrDict(hyperp)
 
     #=== Options ===#
-    with open('../config_files/options_vae.yaml') as f:
+    with open('../config_files/options_vae_full.yaml') as f:
         options = yaml.safe_load(f)
     options = AttrDict(options)
     options = add_options(options)
     options.model_aware = True
     options.model_augmented = False
-    options.posterior_diagonal_covariance = True
-    options.posterior_iaf = False
+    options.posterior_full_covariance = True
 
     #=== File Paths ===#
     project_paths = FilePathsProject(options)

@@ -1,9 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 14 21:41:12 2019
-@author: hwan
-"""
+'''Drives prediction and plotting using a neural network trained under the uq-vae framework
+
+In preparation for prediction and plotting, the code will:
+    1) Construct a dictionary containing the set hyperparameter values
+       read from the .yaml file
+    2) Construct a dictionary containing the set options
+       read from the .yaml file
+    3) Construct the project specific as well as neural-network related
+       filepaths class from the hyperp and options dictionaries
+    4) Construct a dictionary containing loaded training and testing data
+       and related objects
+    5) Construct a dictionary containing loaded prior related objects
+
+You will need to specify:
+    - In add_options():
+        - Whether the neural network was trained using a modelled
+          parameter-to-observable map or was the parameter-to-observable
+          map learned
+
+Outputs will be stored in uq-vae/figures/
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import os
 import sys
 sys.path.insert(0, os.path.realpath('../../../src'))
