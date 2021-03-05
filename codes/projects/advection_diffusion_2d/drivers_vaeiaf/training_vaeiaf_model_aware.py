@@ -95,6 +95,7 @@ if __name__ == "__main__":
     prior_dict = construct_prior_dict(hyperp, options, filepaths,
                                       load_mean = True,
                                       load_covariance = False,
+                                      load_covariance_inverse = False,
                                       load_covariance_cholesky = False,
                                       load_covariance_cholesky_inverse = True)
 

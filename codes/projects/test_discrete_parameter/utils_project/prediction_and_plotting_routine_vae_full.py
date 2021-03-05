@@ -145,8 +145,7 @@ def predict_and_plot(hyperp, options, filepaths):
     prior = PriorHandler(hyperp, options, filepaths,
                         options.parameter_dimensions)
     prior_mean = prior.load_prior_mean()
-    prior_covariance = prior.load_prior_covariance()
-    prior_cov_inv = np.linalg.inv(prior_covariance)
+    prior_cov_inv = prior.load_prior_covariance_inverse()
 
     #=== Construct True Posterior ===#
     post_cov_true = np.linalg.inv(likelihood_matrix + prior_cov_inv)
@@ -173,9 +172,9 @@ def predict_and_plot(hyperp, options, filepaths):
     if options.parameter_dimensions == 2:
         plot_bivariate_gaussian(filepaths.figure_bivariate_pred,
                                 post_mean_pred.numpy(), post_cov_pred,
-                                (5,5), 3.0, 4.8, (0,14),
+                                (5,5), 3.8, 5.2, (0,14),
                                 '', 'u_1', 'u_2')
         plot_bivariate_gaussian(filepaths.figure_bivariate_true,
                                 post_mean_true, post_cov_true,
-                                (5,5), 3.0, 4.8, (0,14),
+                                (5,5), 3.8, 5.2, (0,14),
                                 '', 'u_1', 'u_2')

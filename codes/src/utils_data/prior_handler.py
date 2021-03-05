@@ -15,6 +15,7 @@ class PriorHandler:
 
         self.filepath_prior_mean = filepaths.prior_mean
         self.filepath_prior_covariance = filepaths.prior_covariance
+        self.filepath_prior_covariance_inverse = filepaths.prior_covariance_inverse
         self.filepath_prior_covariance_cholesky = filepaths.prior_covariance_cholesky
         self.filepath_prior_covariance_cholesky_inverse = filepaths.prior_covariance_cholesky_inverse
 
@@ -25,6 +26,9 @@ class PriorHandler:
 
     def load_prior_covariance(self):
         return self.load_matrix(self.filepath_prior_covariance)
+
+    def load_prior_covariance_inverse(self):
+        return self.load_matrix(self.filepath_prior_covariance_inverse)
 
     def load_prior_covariance_cholesky(self):
         return self.load_matrix(self.filepath_prior_covariance_cholesky)

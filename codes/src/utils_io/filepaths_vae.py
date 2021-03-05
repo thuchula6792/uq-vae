@@ -35,6 +35,7 @@ class FilePaths():
         self.prior_string_reg = project_paths.prior_string_reg
         self.prior_mean = project_paths.prior_mean
         self.prior_covariance = project_paths.prior_covariance
+        self.prior_covariance_inverse = project_paths.prior_covariance_inverse
         self.prior_covariance_cholesky = project_paths.prior_covariance_cholesky
         self.prior_covariance_cholesky_inverse = project_paths.prior_covariance_cholesky_inverse
 

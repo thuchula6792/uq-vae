@@ -113,6 +113,8 @@ class FilePathsProject:
                 'prior_mean_' + data_options + '_' + prior_string_train
         self.prior_covariance = directory_dataset +\
                 'prior_covariance_' + data_options + '_' + prior_string_train
+        self.prior_covariance_inverse = directory_dataset +\
+                'prior_covariance_inverse_' + data_options + '_' + prior_string_train
         self.prior_covariance_cholesky = directory_dataset +\
                 'prior_covariance_cholesky_' + data_options + '_' + prior_string_train
         self.prior_covariance_cholesky_inverse = directory_dataset +\

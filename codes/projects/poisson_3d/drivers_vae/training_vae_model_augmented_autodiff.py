@@ -93,7 +93,8 @@ if __name__ == "__main__":
     data_dict = construct_data_dict(hyperp, options, filepaths)
     prior_dict = construct_prior_dict(hyperp, options, filepaths,
                                       load_mean = True,
-                                      load_covariance = True,
+                                      load_covariance = False,
+                                      load_covariance_inverse = True,
                                       load_covariance_cholesky = False,
                                       load_covariance_cholesky_inverse = False)
 

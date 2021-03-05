@@ -33,12 +33,7 @@ def optimize(hyperp, options, filepaths,
              input_and_latent_train, input_and_latent_val, input_and_latent_test,
              input_dimensions, latent_dimension, num_batches_train,
              noise_regularization_matrix,
-             prior_mean, prior_covariance):
-
-    #=== Matrix Determinants and Inverse of Prior Covariance ===#
-    prior_cov_inv = np.linalg.inv(prior_covariance)
-    (sign, logdet) = np.linalg.slogdet(prior_covariance)
-    log_det_prior_cov = sign*logdet
+             prior_mean, prior_cov_inv):
 
     #=== Define Metrics ===#
     metrics = Metrics()
@@ -74,7 +69,7 @@ def optimize(hyperp, options, filepaths,
             batch_loss_train_kld =\
                     loss_kld(
                             batch_post_mean_train, batch_log_post_var_train,
-                            prior_mean, prior_cov_inv, log_det_prior_cov, latent_dimension,
+                            prior_mean, prior_cov_inv,
                             1)
             batch_loss_train_posterior =\
                     (1-hyperp.penalty_js)/hyperp.penalty_js *\
@@ -111,7 +106,7 @@ def optimize(hyperp, options, filepaths,
         batch_loss_val_kld =\
                 loss_kld(
                         batch_post_mean_val, batch_log_post_var_val,
-                        prior_mean, prior_cov_inv, log_det_prior_cov, latent_dimension,
+                        prior_mean, prior_cov_inv,
                         1)
         batch_loss_val_posterior =\
                 (1-hyperp.penalty_js)/hyperp.penalty_js *\
@@ -145,7 +140,7 @@ def optimize(hyperp, options, filepaths,
         batch_loss_test_kld =\
                 loss_kld(
                         batch_post_mean_test, batch_log_post_var_test,
-                        prior_mean, prior_cov_inv, log_det_prior_cov, latent_dimension,
+                        prior_mean, prior_cov_inv,
                         1)
         batch_loss_test_posterior =\
                 (1-hyperp.penalty_js)/hyperp.penalty_js *\

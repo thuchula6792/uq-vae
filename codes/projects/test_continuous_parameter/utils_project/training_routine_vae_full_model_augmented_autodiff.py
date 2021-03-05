@@ -72,7 +72,7 @@ def training(hyperp, options, filepaths,
                  input_and_latent_train, input_and_latent_val, input_and_latent_test,
                  input_dimensions, latent_dimensions, num_batches_train,
                  data_dict["noise_regularization_matrix"],
-                 prior_dict["prior_mean"], prior_dict["prior_covariance"],
+                 prior_dict["prior_mean"], prior_dict["prior_covariance_inverse"],
                  forward_model_solve)
 
     #=== Distributed Training ===#
@@ -95,5 +95,5 @@ def training(hyperp, options, filepaths,
                 input_and_latent_train, input_and_latent_val, input_and_latent_test,
                 input_dimensions, latent_dimensions, num_batches_train,
                 data_dict["noise_regularization_matrix"],
-                prior_dict["prior_mean"], prior_dict["prior_covariance"],
+                prior_dict["prior_mean"], prior_dict["prior_covariance_inverse"],
                 forward_model_solve)

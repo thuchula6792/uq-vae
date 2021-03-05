@@ -32,7 +32,6 @@ def loss_weighted_penalized_difference(true, pred, weight_matrix, penalty):
 ###############################################################################
 def loss_kld(post_mean, log_post_var,
              prior_mean, prior_cov_inv,
-             log_det_prior_cov, latent_dimension,
              penalty):
     trace_prior_cov_inv_times_cov_post = tf.reduce_sum(
             tf.multiply(tf.linalg.diag_part(prior_cov_inv), tf.math.exp(log_post_var)),
@@ -41,11 +40,9 @@ def loss_kld(post_mean, log_post_var,
             tf.multiply(tf.transpose(prior_mean - post_mean),
                 tf.linalg.matmul(prior_cov_inv, tf.transpose(prior_mean - post_mean))),
             axis = 0)
-    log_det_prior_cov_divide_det_cov_post =\
-            log_det_prior_cov - tf.math.reduce_sum(log_post_var, axis=1)
-    return penalty*(trace_prior_cov_inv_times_cov_post +
-            prior_weighted_prior_mean_minus_post_mean -
-            latent_dimension + log_det_prior_cov_divide_det_cov_post)
+    return penalty*(trace_prior_cov_inv_times_cov_post
+            + prior_weighted_prior_mean_minus_post_mean
+            - tf.math.reduce_sum(log_post_var, axis=1))
 
 ###############################################################################
 #                        Loss Full Posterior Covariance                       #
@@ -80,7 +77,6 @@ def loss_trace_likelihood(post_cov_chol,
 
 def loss_kld_full(post_mean, log_post_std, post_cov_chol,
                   prior_mean, prior_cov_inv, identity_otimes_prior_cov_inv,
-                  log_det_prior_cov, latent_dimension,
                   penalty):
     trace_prior_cov_inv_times_cov_post = tf.linalg.matmul(
                 post_cov_chol,
@@ -89,11 +85,9 @@ def loss_kld_full(post_mean, log_post_std, post_cov_chol,
             tf.multiply(tf.transpose(prior_mean - post_mean),
                 tf.linalg.matmul(prior_cov_inv, tf.transpose(prior_mean - post_mean))),
             axis = 0)
-    log_det_prior_cov_divide_det_cov_post =\
-            log_det_prior_cov - 2*tf.math.reduce_sum(log_post_std, axis=1)
-    return penalty*(trace_prior_cov_inv_times_cov_post +
-            prior_weighted_prior_mean_minus_post_mean -
-            latent_dimension + log_det_prior_cov_divide_det_cov_post)
+    return penalty*(trace_prior_cov_inv_times_cov_post
+            + prior_weighted_prior_mean_minus_post_mean
+            - 2*tf.math.reduce_sum(log_post_std, axis=1))
 
 ###############################################################################
 #                             Loss Forward Model                              #

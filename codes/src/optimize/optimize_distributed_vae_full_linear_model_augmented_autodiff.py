@@ -36,13 +36,8 @@ def optimize_distributed(dist_strategy,
         input_and_latent_train, input_and_latent_val, input_and_latent_test,
         input_dimensions, latent_dimension, num_batches_train,
         noise_regularization_matrix, measurement_matrix,
-        prior_mean, prior_covariance,
+        prior_mean, prior_cov_inv,
         forward_matrix, solve_forward_model):
-
-    #=== Matrix Determinants and Inverse of Prior Covariance ===#
-    prior_cov_inv = np.linalg.inv(prior_covariance)
-    (sign, logdet) = np.linalg.slogdet(prior_covariance)
-    log_det_prior_cov = sign*logdet
 
     #=== Kronecker Product of Identity and Prior Covariance Inverse ===#
     identity_otimes_prior_cov_inv =\
@@ -116,7 +111,6 @@ def optimize_distributed(dist_strategy,
                                 batch_post_mean_train, batch_log_post_std_train,
                                 batch_post_cov_chol_train,
                                 prior_mean, prior_cov_inv, identity_otimes_prior_cov_inv,
-                                log_det_prior_cov, latent_dimension,
                                 1)
                 unscaled_replica_batch_loss_train_posterior =\
                         (1-hyperp.penalty_js)/hyperp.penalty_js *\
@@ -158,7 +152,6 @@ def optimize_distributed(dist_strategy,
                             batch_post_mean_val, batch_log_post_std_val,
                             batch_post_cov_chol_val,
                             prior_mean, prior_cov_inv, identity_otimes_prior_cov_inv,
-                            log_det_prior_cov, latent_dimension,
                             1)
             unscaled_replica_batch_loss_val_posterior =\
                     (1-hyperp.penalty_js)/hyperp.penalty_js *\
@@ -191,7 +184,6 @@ def optimize_distributed(dist_strategy,
                             batch_post_mean_test, batch_log_post_std_test,
                             batch_post_cov_chol_test,
                             prior_mean, prior_cov_inv, identity_otimes_prior_cov_inv,
-                            log_det_prior_cov, latent_dimension,
                             1)
             unscaled_replica_batch_loss_test_posterior =\
                     (1-hyperp.penalty_js)/hyperp.penalty_js *\

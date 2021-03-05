@@ -144,8 +144,7 @@ def predict_and_plot(hyperp, options, filepaths):
     prior = PriorHandler(hyperp, options, filepaths,
                         options.parameter_dimensions)
     prior_mean = prior.load_prior_mean()
-    prior_covariance = prior.load_prior_covariance()
-    prior_cov_inv = np.linalg.inv(prior_covariance)
+    prior_cov_inv = prior.load_prior_covariance_inverse()
 
     #=== Construct True Posterior ===#
     post_cov_true = np.linalg.inv(likelihood_matrix + prior_cov_inv)
