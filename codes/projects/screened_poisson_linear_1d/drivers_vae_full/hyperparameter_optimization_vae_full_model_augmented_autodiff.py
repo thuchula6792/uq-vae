@@ -11,7 +11,7 @@ In preparation for optimization of hyperparameters, the code will:
     2) Construct a dictionary containing the set options
        read from the .yaml file
     3) Construct the project specific as well as neural-network related
-       filepaths class from the hyperp and options dictionaries
+       FilePaths classes from the hyperp and options dictionaries
     4) Construct a dictionary containing loaded training and testing data
        and related objects
     5) Construct a dictionary containing loaded prior related objects
@@ -52,7 +52,7 @@ from utils_hyperparameter_optimization.hyperparameter_optimization_routine\
 from utils_project.filepaths_project import FilePathsProject
 from utils_project.construct_data_dict import construct_data_dict
 from utils_project.construct_prior_dict import construct_prior_dict
-from utils_project.training_routine_vae_model_augmented_autodiff import training
+from utils_project.training_routine_vae_full_model_augmented_autodiff import training
 
 # Import skopt code
 from skopt.space import Real, Integer, Categorical

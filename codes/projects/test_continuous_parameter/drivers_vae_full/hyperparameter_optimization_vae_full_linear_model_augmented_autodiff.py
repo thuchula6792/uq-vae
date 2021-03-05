@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''Drives Bayesian hyperparameter optimization of specified hyperparameters
 
-The parameter-to-observable map is modelled and assumed to be linear
+The parameter-to-observable map is modelled and is required to be linear
 The package scikit-opt is used for Bayesian hyperparameter optimization
 
 In preparation for optimization of hyperparameters, the code will:
@@ -11,7 +11,7 @@ In preparation for optimization of hyperparameters, the code will:
     2) Construct a dictionary containing the set options
        read from the .yaml file
     3) Construct the project specific as well as neural-network related
-       filepaths class from the hyperp and options dictionaries
+       FilePaths classes from the hyperp and options dictionaries
     4) Construct a dictionary containing loaded training and testing data
        and related objects
     5) Construct a dictionary containing loaded prior related objects

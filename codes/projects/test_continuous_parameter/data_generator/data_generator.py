@@ -1,9 +1,31 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Tue Sep 22 16:18:12 2020
-@author: hwan
-"""
+'''Generates training and testing data
+
+The parameter-of-interest is a discretization of a continuous function on a one
+dimensional domain.
+
+Whilst you can toggle what objects are generated,
+all generated objects will be loaded by default.
+
+In preparation for generating data, the code will:
+    1) Instantiate an Options class containing the set options
+    2) Construct the project specific FilePaths class from the options
+       attributes
+
+You will need to specify:
+    - In Options:
+        - Whether to construct and save the forward operator matrices
+        - Whether to construct the prior related objects
+        - Whether to draw and save parameters from the prior
+        - The forward operator
+        - Whether to generate training or testing data
+        - Whether to plot the drawn parameters and corresponding states
+
+Outputs will be stored in the directories designated by the FilePaths class
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import os
 import sys
 sys.path.insert(0, os.path.realpath('../../../src'))

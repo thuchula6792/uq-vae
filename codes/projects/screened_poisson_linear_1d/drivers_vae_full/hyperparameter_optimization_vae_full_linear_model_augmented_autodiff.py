@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''Drives Bayesian hyperparameter optimization of specified hyperparameters
 
-The parameter-to-observable map is modelled
+The parameter-to-observable map is modelled and required to be linear
 The package scikit-opt is used for Bayesian hyperparameter optimization
 
 In preparation for optimization of hyperparameters, the code will:
@@ -52,7 +52,7 @@ from utils_hyperparameter_optimization.hyperparameter_optimization_routine\
 from utils_project.filepaths_project import FilePathsProject
 from utils_project.construct_data_dict import construct_data_dict
 from utils_project.construct_prior_dict import construct_prior_dict
-from utils_project.training_routine_vae_full_model_augmented_autodiff import training
+from utils_project.training_routine_vae_full_linear_model_augmented_autodiff import training
 
 # Import skopt code
 from skopt.space import Real, Integer, Categorical
@@ -104,18 +104,19 @@ if __name__ == "__main__":
         space.append(val)
 
     #=== Hyperparameters ===#
-    with open('../config_files/hyperparameters_vae_full.yaml') as f:
+    with open('../config_files/hyperparameters_vae.yaml') as f:
         hyperp = yaml.safe_load(f)
     hyperp = AttrDict(hyperp)
 
     #=== Options ===#
-    with open('../config_files/options_vae_full.yaml') as f:
+    with open('../config_files/options_vae.yaml') as f:
         options = yaml.safe_load(f)
     options = AttrDict(options)
     options = add_options(options)
     options.model_aware = False
     options.model_augmented = True
-    options.posterior_full_covariance = True
+    options.posterior_diagonal_covariance = True
+    options.posterior_iaf = False
 
     #=== File Paths ===#
     project_paths = FilePathsProject(options)

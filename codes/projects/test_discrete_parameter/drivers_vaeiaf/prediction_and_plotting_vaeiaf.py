@@ -8,7 +8,7 @@ In preparation for prediction and plotting, the code will:
     2) Construct a dictionary containing the set options
        read from the .yaml file
     3) Construct the project specific as well as neural-network related
-       filepaths class from the hyperp and options dictionaries
+       FilePaths classes from the hyperp and options dictionaries
     4) Construct a dictionary containing loaded training and testing data
        and related objects
     5) Construct a dictionary containing loaded prior related objects
@@ -35,7 +35,7 @@ from attrdict import AttrDict
 from utils_io.config_io import command_line_json_string_to_dict
 from utils_io.filepaths_vae import FilePathsPredictionAndPlotting
 
-# Import FilePaths class and plotting routine
+# Import FilePaths classes and plotting routine
 from utils_project.filepaths_project import FilePathsProject
 from utils_project.prediction_and_plotting_routine_vaeiaf\
         import predict_and_plot, plot_and_save_metrics

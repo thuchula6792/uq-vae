@@ -8,7 +8,7 @@ In preparation for prediction and plotting, the code will:
     2) Construct a dictionary containing the set options
        read from the .yaml file
     3) Construct the project specific as well as neural-network related
-       filepaths class from the hyperp and options dictionaries
+       FilePaths classes from the hyperp and options dictionaries
     4) Construct a dictionary containing loaded training and testing data
        and related objects
     5) Construct a dictionary containing loaded prior related objects

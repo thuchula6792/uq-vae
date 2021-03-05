@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 '''Drives training of a neural network under the uq-vae framework
 
-The parameter-to-observable map is modelled
-The posterior density is modelled using inverse autoregressive flows
+The parameter-to-observable map is modelled and required to be linear
 
 In preparation for training the neural network, the code will:
     1) Construct a dictionary containing the set hyperparameter values
@@ -43,7 +42,8 @@ from utils_io.filepaths_vae import FilePathsTraining
 from utils_project.filepaths_project import FilePathsProject
 from utils_project.construct_data_dict import construct_data_dict
 from utils_project.construct_prior_dict import construct_prior_dict
-from utils_project.training_routine_custom_vaeiaf_model_aware import trainer_custom
+from utils_project.training_routine_vae_full_linear_model_augmented_autodiff\
+        import training
 
 import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"
 
@@ -69,22 +69,22 @@ def add_options(options):
 if __name__ == "__main__":
 
     #=== Hyperparameters ===#
-    with open('../config_files/hyperparameters_vaeiaf.yaml') as f:
+    with open('../config_files/hyperparameters_vae_full.yaml') as f:
         hyperp = yaml.safe_load(f)
     if len(sys.argv) > 1:
         hyperp = command_line_json_string_to_dict(sys.argv[1], hyperp)
     hyperp = AttrDict(hyperp)
 
     #=== Options ===#
-    with open('../config_files/options_vaeiaf.yaml') as f:
+    with open('../config_files/options_vae_full.yaml') as f:
         options = yaml.safe_load(f)
     options = AttrDict(options)
     options = add_options(options)
     if len(sys.argv) > 1: # if run from scheduler
         options.which_gpu = sys.argv[2]
-    options.model_aware = True
-    options.model_augmented = False
-    options.posterior_iaf = True
+    options.model_aware = False
+    options.model_augmented = True
+    options.posterior_full_covariance = True
 
     #=== File Paths ===#
     project_paths = FilePathsProject(options)
@@ -94,10 +94,10 @@ if __name__ == "__main__":
     data_dict = construct_data_dict(hyperp, options, filepaths)
     prior_dict = construct_prior_dict(hyperp, options, filepaths,
                                       load_mean = True,
-                                      load_covariance = False,
+                                      load_covariance = True,
                                       load_covariance_cholesky = False,
-                                      load_covariance_cholesky_inverse = True)
+                                      load_covariance_cholesky_inverse = False)
 
     #=== Initiate training ===#
-    trainer_custom(hyperp, options, filepaths,
-                   data_dict, prior_dict)
+    training(hyperp, options, filepaths,
+             data_dict, prior_dict)
