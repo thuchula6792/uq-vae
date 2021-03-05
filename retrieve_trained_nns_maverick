@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rsync -rP Maverick:/work/06537/hwangoh/maverick2/uq-vae/trained_nns .

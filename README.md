@@ -6,13 +6,13 @@
 # Code Structure:
 * Below is a description of the source codes as well as the key codes in my
   input/output system.
-* For an illustrative example, see the test cases in `codes/projects/test_`. To run
-  this, use any of the training drivers in `codes/projects/test_/training_.py`. You may
+* For an illustrative example, see the test cases in `/codes/projects/test_/`. To run
+  this, use any of the training drivers in `/codes/projects/test_/training_.py`. You may
   have to first generate the training and testing data using
-  `codes/projects/test_/data_generator/generate_data.py`.
+  `/codes/projects/test_/data_generator/generate_data.py`.
 * However, there is no need to use my input/output system; you can use
   your own input/output codes so long as the appropriate calls to the neural
-  networks in `src/neural_networks` and optimization routines in `src/optimize` are
+  networks in `/src/neural_networks/` and optimization routines in `/src/optimize/` are
   implemented.
 
 ## src:

@@ -2,8 +2,9 @@ import numpy as np
 import pandas as pd
 
 
-def save_prior(filepaths, prior_mean, prior_covariance,
-        prior_covariance_cholesky, prior_covariance_cholesky_inverse):
+def save_prior(filepaths, prior_mean,
+               prior_covariance, prior_covariance_inverse,
+               prior_covariance_cholesky, prior_covariance_cholesky_inverse):
 
     #=== Mean ===#
     df_prior_mean = pd.DataFrame({'prior_mean': prior_mean.flatten()})
@@ -60,5 +61,5 @@ def load_prior(filepaths, dimensions):
     prior_covariance_cholesky_inverse =\
             prior_covariance_cholesky_inverse.reshape((dimensions, dimensions))
 
-    return prior_mean, prior_covariance, prior_covariance_inverse\
+    return prior_mean, prior_covariance, prior_covariance_inverse,\
             prior_covariance_cholesky, prior_covariance_cholesky_inverse

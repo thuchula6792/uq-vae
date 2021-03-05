@@ -37,14 +37,11 @@ def predict_and_plot(hyperp, options, filepaths):
     options.mesh_point_1 = [-1,-1]
     options.mesh_point_2 = [1,1]
 
-    # options.nx = 15
-    # options.ny = 15
+    options.nx = 15
+    options.ny = 15
 
-    # options.nx = 30
-    # options.ny = 30
-
-    options.nx = 50
-    options.ny = 50
+    # options.nx = 50
+    # options.ny = 50
 
     options.num_obs_points = 10
     options.order_fe_space = 1
@@ -60,6 +57,9 @@ def predict_and_plot(hyperp, options, filepaths):
         obs_dimensions = options.parameter_dimensions
     if options.obs_type == 'obs':
         obs_dimensions = options.num_obs_points
+        print('Loading Boundary Indices')
+        df_obs_indices = pd.read_csv(filepaths.project.obs_indices + '.csv')
+        obs_indices = df_obs_indices.to_numpy()
 
     #=== Data and Latent Dimensions of Autoencoder ===#
     input_dimensions = obs_dimensions
@@ -84,7 +84,8 @@ def predict_and_plot(hyperp, options, filepaths):
     NN.load_weights(filepaths.trained_NN)
 
     #=== Selecting Samples ===#
-    sample_number = 128
+    sample_number = 1
+    # sample_number = 128
     parameter_test_sample = np.expand_dims(parameter_test[sample_number,:], 0)
     state_obs_test_sample = np.expand_dims(state_obs_test[sample_number,:], 0)
 
@@ -115,7 +116,8 @@ def predict_and_plot(hyperp, options, filepaths):
     print('================================')
 
     #=== Plot FEM Functions ===#
-    cross_section_y = 0.0
+    cross_section_y = 0.5
+    # cross_section_y = 0.0
     plot_parameter_min = 0
     plot_parameter_max = 6
     plot_variance_min = 0

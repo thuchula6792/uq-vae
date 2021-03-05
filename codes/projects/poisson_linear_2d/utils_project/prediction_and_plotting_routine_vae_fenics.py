@@ -60,6 +60,9 @@ def predict_and_plot(hyperp, options, filepaths):
         obs_dimensions = options.parameter_dimensions
     if options.obs_type == 'obs':
         obs_dimensions = options.num_obs_points
+        print('Loading Boundary Indices')
+        df_obs_indices = pd.read_csv(filepaths.project.obs_indices + '.csv')
+        obs_indices = df_obs_indices.to_numpy()
 
     #=== Data and Latent Dimensions of Autoencoder ===#
     input_dimensions = obs_dimensions

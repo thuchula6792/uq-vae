@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rsync -rP 192.168.1.217:/Users/hwan/Documents/Github_Codes/uq-vae/trained_nns .
