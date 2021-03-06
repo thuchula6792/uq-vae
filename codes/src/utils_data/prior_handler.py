@@ -1,17 +1,25 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Nov  3 10:16:28 2019
+'''Manipulates prior related objects
 
-@author: hwan
-"""
+This class contains methods associated with manipulation of the training and
+testing dataset. Currently, these methods involve loading the prior mean,
+covariance, inverse of the covariance, Cholesky of the covariance and inverse of
+the Cholesky of the covariance.
+
+Inputs:
+    - hyperp: dictionary storing set hyperparameter values
+    - options: dictionary storing the set options
+    - filepaths: class instance storing the filepaths
+    - poi_dimensions: dimension of the parameter-of-interest
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import numpy as np
 import pandas as pd
 
 import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"
 
 class PriorHandler:
-    def __init__(self, hyperp, options, filepaths, input_dimensions):
+    def __init__(self, hyperp, options, filepaths, poi_dimensions):
 
         self.filepath_prior_mean = filepaths.prior_mean
         self.filepath_prior_covariance = filepaths.prior_covariance
@@ -19,7 +27,7 @@ class PriorHandler:
         self.filepath_prior_covariance_cholesky = filepaths.prior_covariance_cholesky
         self.filepath_prior_covariance_cholesky_inverse = filepaths.prior_covariance_cholesky_inverse
 
-        self.input_dimensions = input_dimensions
+        self.poi_dimensions = poi_dimensions
 
     def load_prior_mean(self):
         return self.load_vector(self.filepath_prior_mean)
@@ -44,5 +52,5 @@ class PriorHandler:
     def load_matrix(self, filepath):
         df_matrix = pd.read_csv(filepath + '.csv')
         matrix = df_matrix.to_numpy()
-        matrix = matrix.reshape((self.input_dimensions, self.input_dimensions))
+        matrix = matrix.reshape((self.poi_dimensions, self.poi_dimensions))
         return matrix.astype(np.float32)

@@ -29,7 +29,7 @@ import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"
 #                             Training Properties                             #
 ###############################################################################
 def optimize(hyperp, options, filepaths,
-        NN, optimizer,
+        nn, optimizer,
         input_and_latent_train, input_and_latent_val, input_and_latent_test,
         input_dimensions, latent_dimension, num_batches_train,
         noise_regularization_matrix,
@@ -40,8 +40,8 @@ def optimize(hyperp, options, filepaths,
     metrics = Metrics()
 
     #=== Creating Directory for Trained Neural Network ===#
-    if not os.path.exists(filepaths.directory_trained_NN):
-        os.makedirs(filepaths.directory_trained_NN)
+    if not os.path.exists(filepaths.directory_trained_nn):
+        os.makedirs(filepaths.directory_trained_nn)
 
     #=== Tensorboard ===# "tensorboard --logdir=Tensorboard"
     if os.path.exists(filepaths.directory_tensorboard):
@@ -49,8 +49,8 @@ def optimize(hyperp, options, filepaths,
     summary_writer = tf.summary.create_file_writer(filepaths.directory_tensorboard)
 
     #=== Display Neural Network Architecture ===#
-    NN.build((hyperp.batch_size, input_dimensions))
-    NN.summary()
+    nn.build((hyperp.batch_size, input_dimensions))
+    nn.summary()
 
 ###############################################################################
 #                   Training, Validation and Testing Step                     #
@@ -59,10 +59,10 @@ def optimize(hyperp, options, filepaths,
     @tf.function
     def train_step(batch_input_train, batch_latent_train):
         with tf.GradientTape() as tape:
-            batch_post_mean_train, batch_log_post_var_train = NN.encoder(batch_input_train)
+            batch_post_mean_train, batch_log_post_var_train = nn.encoder(batch_input_train)
             batch_input_pred_forward_model_train =\
                     solve_forward_model(
-                        NN.reparameterize(batch_post_mean_train, batch_log_post_var_train))
+                        nn.reparameterize(batch_post_mean_train, batch_log_post_var_train))
 
             batch_loss_train_vae =\
                     loss_weighted_penalized_difference(
@@ -86,8 +86,8 @@ def optimize(hyperp, options, filepaths,
                                  -batch_loss_train_kld\
                                  -batch_loss_train_posterior)
 
-        gradients = tape.gradient(batch_loss_train, NN.trainable_variables)
-        optimizer.apply_gradients(zip(gradients, NN.trainable_variables))
+        gradients = tape.gradient(batch_loss_train, nn.trainable_variables)
+        optimizer.apply_gradients(zip(gradients, nn.trainable_variables))
         metrics.mean_loss_train(batch_loss_train)
         metrics.mean_loss_train_vae(batch_loss_train_vae)
         metrics.mean_loss_train_encoder(batch_loss_train_kld)
@@ -98,7 +98,7 @@ def optimize(hyperp, options, filepaths,
     #=== Validation Step ===#
     @tf.function
     def val_step(batch_input_val, batch_latent_val):
-        batch_post_mean_val, batch_log_post_var_val = NN.encoder(batch_input_val)
+        batch_post_mean_val, batch_log_post_var_val = nn.encoder(batch_input_val)
 
         batch_loss_val_kld =\
                 loss_kld(
@@ -123,7 +123,7 @@ def optimize(hyperp, options, filepaths,
     #=== Test Step ===#
     @tf.function
     def test_step(batch_input_test, batch_latent_test):
-        batch_post_mean_test, batch_log_post_var_test = NN.encoder(batch_input_test)
+        batch_post_mean_test, batch_log_post_var_test = nn.encoder(batch_input_test)
 
         batch_loss_test_kld =\
                 loss_kld(
@@ -156,7 +156,7 @@ def optimize(hyperp, options, filepaths,
         print('================================')
         print('            Epoch %d            ' %(epoch))
         print('================================')
-        print('Project: ' + filepaths.case_name + '\n' + 'NN: ' + filepaths.NN_name + '\n')
+        print('Project: ' + filepaths.case_name + '\n' + 'nn: ' + filepaths.nn_name + '\n')
         print('GPU: ' + options.which_gpu + '\n')
         print('Optimizing %d batches of size %d:' %(num_batches_train, hyperp.batch_size))
         start_time_epoch = time.time()
@@ -178,11 +178,11 @@ def optimize(hyperp, options, filepaths,
 
         #=== Update Current Relative Gradient Norm ===#
         with summary_writer.as_default():
-            for w in NN.weights:
+            for w in nn.weights:
                 tf.summary.histogram(w.name, w, step=epoch)
             l2_norm = lambda t: tf.sqrt(tf.reduce_sum(tf.pow(t, 2)))
             sum_gradient_norms = 0.0
-            for gradient, variable in zip(gradients, NN.trainable_variables):
+            for gradient, variable in zip(gradients, nn.trainable_variables):
                 tf.summary.histogram("gradients_norm/" + variable.name, l2_norm(gradient),
                         step = epoch)
                 sum_gradient_norms += l2_norm(gradient)
@@ -222,10 +222,10 @@ def optimize(hyperp, options, filepaths,
 
         #=== Saving Current Model and  Metrics ===#
         if epoch %100 ==0:
-            NN.save_weights(filepaths.trained_NN)
+            nn.save_weights(filepaths.trained_nn)
             metrics.save_metrics(filepaths)
-            dump_attrdict_as_yaml(hyperp, filepaths.directory_trained_NN, 'hyperp')
-            dump_attrdict_as_yaml(options, filepaths.directory_trained_NN, 'options')
+            dump_attrdict_as_yaml(hyperp, filepaths.directory_trained_nn, 'hyperp')
+            dump_attrdict_as_yaml(options, filepaths.directory_trained_nn, 'options')
             print('Current Model and Metrics Saved')
 
         #=== Gradient Norm Termination Condition ===#
@@ -234,8 +234,8 @@ def optimize(hyperp, options, filepaths,
             break
 
     #=== Save Final Model ===#
-    NN.save_weights(filepaths.trained_NN)
+    nn.save_weights(filepaths.trained_nn)
     metrics.save_metrics(filepaths)
-    dump_attrdict_as_yaml(hyperp, filepaths.directory_trained_NN, 'hyperp')
-    dump_attrdict_as_yaml(options, filepaths.directory_trained_NN, 'options')
+    dump_attrdict_as_yaml(hyperp, filepaths.directory_trained_nn, 'hyperp')
+    dump_attrdict_as_yaml(options, filepaths.directory_trained_nn, 'options')
     print('Final Model and Metrics Saved')

@@ -52,11 +52,11 @@ def predict_and_plot(hyperp, options, filepaths):
     state_obs_test = data.qoi_test
 
     #=== Load Trained Neural Network ===#
-    NN = VAE(hyperp, options,
+    nn = VAE(hyperp, options,
              input_dimensions, latent_dimensions,
              None, None,
              positivity_constraint_log_exp)
-    NN.load_weights(filepaths.trained_NN)
+    nn.load_weights(filepaths.trained_nn)
 
     #=== Selecting Samples ===#
     sample_number = 105
@@ -64,8 +64,8 @@ def predict_and_plot(hyperp, options, filepaths):
     state_obs_test_sample = np.expand_dims(state_obs_test[sample_number,:], 0)
 
     #=== Predictions ===#
-    parameter_pred_sample, _ = NN.encoder(state_obs_test_sample)
-    state_obs_pred_sample = NN.decoder(parameter_test_sample)
+    parameter_pred_sample, _ = nn.encoder(state_obs_test_sample)
+    state_obs_pred_sample = nn.decoder(parameter_test_sample)
     parameter_pred_sample = parameter_pred_sample.numpy().flatten()
     state_obs_pred_sample = state_obs_pred_sample.numpy().flatten()
 
@@ -106,7 +106,7 @@ def plot_and_save_metrics(hyperp, options, filepaths):
     print('================================')
     #=== Load Metrics ===#
     print('Loading Metrics')
-    df_metrics = pd.read_csv(filepaths.trained_NN + "_metrics" + '.csv')
+    df_metrics = pd.read_csv(filepaths.trained_nn + "_metrics" + '.csv')
     array_metrics = df_metrics.to_numpy()
 
     ####################

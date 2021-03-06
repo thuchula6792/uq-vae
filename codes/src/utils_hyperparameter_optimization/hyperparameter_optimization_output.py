@@ -1,10 +1,26 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sun May  28 10:16:28 2020
+'''Outputs information of Bayesian hyperparameter optimization
 
-@author: hwan
-"""
+Following Bayesian optimization of select hyperparameters, this code will output
+information on the procedure to uq-vae/hyperparameter_optimization/outputs/.
+This includes:
+    - convergence.png: convergence graph over the total number of calls
+    - optimal_set_of_hyperparameters.txt: the value of the optimal
+      hyperparameters for the hyperparameters specified in your search
+    - scenarios_trained.txt: list of scenarios trained. Each entry contains the
+                             value of the hyperparameter specified in your search
+    - validation_losses.csv: list of the final validation loss for each of the
+                              hyperparameter scenarios
+
+Inputs:
+    - hyperp_of_interest_dict: dictionary of the hyperparameters to be searched
+                               and their ranges
+    - hyperp_opt_result: training information for the network possessing the
+                         optimal hyperparameter values
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import os
 import shutil
 

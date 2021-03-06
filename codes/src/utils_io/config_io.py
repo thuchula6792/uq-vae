@@ -6,8 +6,7 @@ import warnings
 import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"
 
 def command_line_json_string_to_dict(json_string, hyperp):
-    '''
-    Overwrite the hyperparameters loaded from file.
+    '''Overwrite the hyperparameters loaded from file.
 
     Note that the there is no checking to ensure that the command line
     arguments are in fact hyperparameters used by code, so spelling mistakes
@@ -19,6 +18,8 @@ def command_line_json_string_to_dict(json_string, hyperp):
 
     Assumes that all of the hyperparameters from the command line
     are in the form of a single JSON string in args[1]
+
+    Author: Jonathan Wittmer, Oden Institute, Austin, Texas 2020
     '''
     #=== Overwrite Hyperparameter Keys ===#
     command_line_arguments = json.loads(json_string)

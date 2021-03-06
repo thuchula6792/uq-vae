@@ -1,11 +1,27 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun May  28 10:16:28 2020
+'''Constructs filepaths for saving and loading project specific objects
 
-@author: hwan
-"""
+This class contains the strings associated to project specific objects.
+The majority of these strings are associated with loading the required objects.
+However, this code also constructs the string case_name which identifies the
+outputs of training, prediction and plotting.
 
+You will need to specify:
+    - directory_dataset: the directory containing your dataset
+    - project_name: the name of your project
+    - data_string: strings detailing the properties of the dataset
+    - prior_string_: strings detailing the location of prior models used for
+                     regularization, generating the training set and
+                     generating the testing set
+    - poi_: strings detailing the location of the training and testing set of
+            the parameter-of-interest
+    - qoi_: strings detailing the location of the training and testing set of
+            the quantity-of-interest
+
+Inputs:
+    - options: dictionary storing the set options
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 from utils_io.value_to_string import value_to_string
 
 import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"
@@ -73,9 +89,6 @@ class FilePathsProject:
                 data_options
 
         #=== Parameters ===#
-        self.obs_indices = directory_dataset +\
-                project_name + '_' + 'obs_indices_' +\
-                'o%d_'%(options.num_obs_points) + data_options
         self.poi_train = directory_dataset +\
                 project_name + '_' + 'parameter_train_' +\
                 'd%d_'%(options.num_data_train_load) + data_options + '_' + prior_string_train
@@ -85,6 +98,9 @@ class FilePathsProject:
         self.poi_specific = ''
 
         #=== State ===#
+        self.obs_indices = directory_dataset +\
+                project_name + '_' + 'obs_indices_' +\
+                'o%d_'%(options.num_obs_points) + data_options
         if options.obs_type == 'full':
             self.qoi_train = directory_dataset +\
                     project_name + '_' + 'state_' + options.obs_type + '_train_' +\

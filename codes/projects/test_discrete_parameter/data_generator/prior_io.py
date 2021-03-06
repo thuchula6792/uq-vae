@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 
-
 def save_prior(filepaths, prior_mean,
                prior_covariance, prior_covariance_inverse,
                prior_covariance_cholesky, prior_covariance_cholesky_inverse):

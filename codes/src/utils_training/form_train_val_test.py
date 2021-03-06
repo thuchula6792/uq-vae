@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Nov 22 10:18:47 2019
+'''Forms batches from training and testing datasets
 
-@author: hwan
-"""
+Inputs:
+    - input_: Inputs of the encoder
+    - output_: Output of the encoder. This is the model the posterior mean
+    - batch_size: size of the batches to use in stochastic gradient descent
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import tensorflow as tf
 
 import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"

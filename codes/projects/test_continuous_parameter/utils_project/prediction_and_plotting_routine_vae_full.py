@@ -56,11 +56,11 @@ def predict_and_plot(hyperp, options, filepaths):
     state_obs_test = data.qoi_test
 
     #=== Load Trained Neural Network ===#
-    NN = VAE(hyperp, options,
+    nn = VAE(hyperp, options,
                 input_dimensions, latent_dimensions,
                 None, None,
                 tf.identity)
-    NN.load_weights(filepaths.trained_NN)
+    nn.load_weights(filepaths.trained_nn)
 
     #=== Construct Forward Model ===#
     forward_operator = load_forward_operator_tf(options, filepaths)
@@ -77,16 +77,16 @@ def predict_and_plot(hyperp, options, filepaths):
     state_obs_test_sample = np.expand_dims(state_obs_test[sample_number,:], 0)
 
     #=== Predictions ===#
-    post_mean_pred, log_post_std_pred, post_cov_chol_pred = NN.encoder(state_obs_test_sample)
+    post_mean_pred, log_post_std_pred, post_cov_chol_pred = nn.encoder(state_obs_test_sample)
     n_samples = 1000
     posterior_pred_draws = np.zeros((n_samples, post_mean_pred.shape[1]),
                                 dtype=np.float32)
     state_obs_pred_draws = np.zeros((n_samples, state_obs_test_sample.shape[1]),
                                 dtype=np.float32)
     for n in range(0,n_samples):
-        posterior_pred_draws[n,:] = NN.reparameterize(post_mean_pred, post_cov_chol_pred)
+        posterior_pred_draws[n,:] = nn.reparameterize(post_mean_pred, post_cov_chol_pred)
     if options.model_aware == True:
-        state_obs_pred_draws = NN.decoder(posterior_pred_draws)
+        state_obs_pred_draws = nn.decoder(posterior_pred_draws)
     else:
         state_obs_pred_draws = forward_model_solve(posterior_pred_draws)
 

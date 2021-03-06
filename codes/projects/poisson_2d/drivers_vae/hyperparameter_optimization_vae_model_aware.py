@@ -21,9 +21,12 @@ You will need to specify:
     - In add_options():
         - Whether to use distributed training
         - Which gpus to utilize
+        - Whether to delete the trained suboptimal neural networks
     - Number of neural networks of to be trained through setting the number of
       calls of the training routine
-    - The hyperparameters of interest and their corresponding ranges
+    - The hyperparameters of interest and their corresponding ranges.
+      Unspecified hyperparameters will obtain a default value from that set in the
+      hyperp_.yaml file
 
 Outputs will be stored in the following directories:
     - uq-vae/hyperparameter_optimization/ which contains:
@@ -73,6 +76,9 @@ def add_options(options):
 
     #=== Which Single GPU to Use ===#
     options.which_gpu = '2'
+
+    #=== Whether to Delete Suboptimal Neural Networks ===#
+    options.delete_suboptimal_nn = False
 
     return options
 

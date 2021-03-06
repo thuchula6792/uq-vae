@@ -29,7 +29,7 @@ import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"
 ###############################################################################
 def optimize_distributed(dist_strategy,
         hyperp, options, filepaths,
-        NN, optimizer,
+        nn, optimizer,
         input_and_latent_train, input_and_latent_val, input_and_latent_test,
         input_dimensions, latent_dimension, num_batches_train,
         noise_regularization_matrix,
@@ -48,8 +48,8 @@ def optimize_distributed(dist_strategy,
     metrics = Metrics(dist_strategy)
 
     #=== Creating Directory for Trained Neural Network ===#
-    if not os.path.exists(filepaths.directory_trained_NN):
-        os.makedirs(filepaths.directory_trained_NN)
+    if not os.path.exists(filepaths.directory_trained_nn):
+        os.makedirs(filepaths.directory_trained_nn)
 
     #=== Tensorboard ===# "tensorboard --logdir=Tensorboard"
     if os.path.exists(filepaths.directory_tensorboard):
@@ -58,8 +58,8 @@ def optimize_distributed(dist_strategy,
 
     #=== Display Neural Network Architecture ===#
     with dist_strategy.scope():
-        NN.build((hyperp.batch_size, input_dimensions))
-        NN.summary()
+        nn.build((hyperp.batch_size, input_dimensions))
+        nn.summary()
 
 ###############################################################################
 #                   Training, Validation and Testing Step                     #
@@ -68,8 +68,8 @@ def optimize_distributed(dist_strategy,
         #=== Training Step ===#
         def train_step(batch_input_train, batch_latent_train):
             with tf.GradientTape() as tape:
-                batch_likelihood_train = NN(batch_input_train)
-                batch_post_mean_train, batch_log_post_var_train = NN.encoder(batch_input_train)
+                batch_likelihood_train = nn(batch_input_train)
+                batch_post_mean_train, batch_log_post_var_train = nn.encoder(batch_input_train)
 
                 unscaled_replica_batch_loss_train_vae =\
                         loss_weighted_penalized_difference(
@@ -96,8 +96,8 @@ def optimize_distributed(dist_strategy,
                 scaled_replica_batch_loss_train =\
                         tf.reduce_sum(unscaled_replica_batch_loss_train * (1./hyperp.batch_size))
 
-            gradients = tape.gradient(scaled_replica_batch_loss_train, NN.trainable_variables)
-            optimizer.apply_gradients(zip(gradients, NN.trainable_variables))
+            gradients = tape.gradient(scaled_replica_batch_loss_train, nn.trainable_variables)
+            optimizer.apply_gradients(zip(gradients, nn.trainable_variables))
             metrics.mean_loss_train_vae(unscaled_replica_batch_loss_train_vae)
             metrics.mean_loss_train_encoder(unscaled_replica_batch_loss_train_kld)
             metrics.mean_loss_train_posterior(unscaled_replica_batch_loss_train_posterior)
@@ -112,8 +112,8 @@ def optimize_distributed(dist_strategy,
 
         #=== Validation Step ===#
         def val_step(batch_input_val, batch_latent_val):
-            batch_likelihood_val = NN(batch_input_val)
-            batch_post_mean_val, batch_log_post_var_val = NN.encoder(batch_input_val)
+            batch_likelihood_val = nn(batch_input_val)
+            batch_post_mean_val, batch_log_post_var_val = nn.encoder(batch_input_val)
 
             unscaled_replica_batch_loss_val_vae =\
                     loss_weighted_penalized_difference(
@@ -150,9 +150,9 @@ def optimize_distributed(dist_strategy,
 
         #=== Test Step ===#
         def test_step(batch_input_test, batch_latent_test):
-            batch_likelihood_test = NN(batch_input_test)
-            batch_post_mean_test, batch_log_post_var_test = NN.encoder(batch_input_test)
-            batch_input_pred_test = NN.decoder(batch_latent_test)
+            batch_likelihood_test = nn(batch_input_test)
+            batch_post_mean_test, batch_log_post_var_test = nn.encoder(batch_input_test)
+            batch_input_pred_test = nn.decoder(batch_latent_test)
 
             unscaled_replica_batch_loss_test_vae =\
                     loss_weighted_penalized_difference(
@@ -202,7 +202,7 @@ def optimize_distributed(dist_strategy,
         print('================================')
         print('            Epoch %d            ' %(epoch))
         print('================================')
-        print('Project: ' + filepaths.case_name + '\n' + 'NN: ' + filepaths.NN_name + '\n')
+        print('Project: ' + filepaths.case_name + '\n' + 'nn: ' + filepaths.nn_name + '\n')
         print('GPUs: ' + options.dist_which_gpus + '\n')
         print('Optimizing %d batches of size %d:' %(num_batches_train, hyperp.batch_size))
         start_time_epoch = time.time()
@@ -263,15 +263,15 @@ def optimize_distributed(dist_strategy,
 
         #=== Save Current Model and Metrics ===#
         if epoch % 5 == 0:
-            NN.save_weights(filepaths.trained_NN)
+            nn.save_weights(filepaths.trained_nn)
             metrics.save_metrics(filepaths)
-            dump_attrdict_as_yaml(hyperp, filepaths.directory_trained_NN, 'hyperp')
-            dump_attrdict_as_yaml(options, filepaths.directory_trained_NN, 'options')
+            dump_attrdict_as_yaml(hyperp, filepaths.directory_trained_nn, 'hyperp')
+            dump_attrdict_as_yaml(options, filepaths.directory_trained_nn, 'options')
             print('Current Model and Metrics Saved')
 
     #=== Save Final Model ===#
-    NN.save_weights(filepaths.trained_NN)
+    nn.save_weights(filepaths.trained_nn)
     metrics.save_metrics(filepaths)
-    dump_attrdict_as_yaml(hyperp, filepaths.directory_trained_NN, 'hyperp')
-    dump_attrdict_as_yaml(options, filepaths.directory_trained_NN, 'options')
+    dump_attrdict_as_yaml(hyperp, filepaths.directory_trained_nn, 'hyperp')
+    dump_attrdict_as_yaml(options, filepaths.directory_trained_nn, 'options')
     print('Final Model and Metrics Saved')

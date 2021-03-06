@@ -4,22 +4,14 @@
 *.index
 *.meta
 *.data-00000-of-00001
-Tensorboard/
-Trained_NNs/
-Figures/
-Hyperparameter_Optimization/
+tensorboard/
+trained_nns/
+figures/
+hyperparameter_optimization/
 
 tags
 copy_and_zip
 overwrite_server_runs_branch
 quick_git
-retrieve_Figures
-retrieve_Hyperparameter_Opt
-retrieve_Tensorboard
-retrieve_Tensorboard_Maverick
-retrieve_Trained_NNs
-retrieve_Trained_NNs_Maverick
-retrieve_Trained_NNs_Lonestar
-retrieve_Trained_NNs_Stampede
-retrieve_Trained_NNs_Macbook
+retrieve*
 slurm*

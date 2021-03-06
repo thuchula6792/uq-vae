@@ -81,12 +81,12 @@ def predict_and_plot(hyperp, options, filepaths):
 
     #for epoch in epoch_list:
     #   #=== Load Trained Neural Network ===#
-    #   NN = VAE(hyperp, options,
+    #   nn = VAE(hyperp, options,
     #           input_dimensions, latent_dimensions,
     #           None, None,
     #           positivity_constraint_log_exp)
-    #   NN.load_weights(filepaths.directory_trained_NN + '_%d'%(epoch) + '/' +
-    #           filepaths.NN_name)
+    #   nn.load_weights(filepaths.directory_trained_nn + '_%d'%(epoch) + '/' +
+    #           filepaths.nn_name)
 
     #   #=== Selecting Samples ===#
     #   sample_number = 128
@@ -94,15 +94,15 @@ def predict_and_plot(hyperp, options, filepaths):
     #   state_obs_test_sample = np.expand_dims(state_obs_test[sample_number,:], 0)
 
     #   #=== Predictions ===#
-    #   posterior_mean_pred, posterior_cov_pred = NN.encoder(state_obs_test_sample)
-    #   posterior_pred_draw = NN.reparameterize(posterior_mean_pred, posterior_cov_pred)
+    #   posterior_mean_pred, posterior_cov_pred = nn.encoder(state_obs_test_sample)
+    #   posterior_pred_draw = nn.reparameterize(posterior_mean_pred, posterior_cov_pred)
 
     #   posterior_mean_pred = posterior_mean_pred.numpy().flatten()
     #   posterior_cov_pred = posterior_cov_pred.numpy().flatten()
     #   posterior_pred_draw = posterior_pred_draw.numpy().flatten()
 
     #   if options.model_aware == 1:
-    #       state_obs_pred_draw = NN.decoder(np.expand_dims(posterior_pred_draw, 0))
+    #       state_obs_pred_draw = nn.decoder(np.expand_dims(posterior_pred_draw, 0))
     #       state_obs_pred_draw = state_obs_pred_draw.numpy().flatten()
 
     #   #=== Plotting Prediction ===#

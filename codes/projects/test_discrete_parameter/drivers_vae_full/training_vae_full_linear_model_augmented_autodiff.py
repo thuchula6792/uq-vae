@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 '''Drives training of a neural network under the uq-vae framework
 
-The parameter-to-observable map is modelled and is required to be linear
+The parameter-to-observable map is modelled and required to be linear
 
 In preparation for training the neural network, the code will:
     1) Construct a dictionary containing the set hyperparameter values

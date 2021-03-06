@@ -1,3 +1,18 @@
+'''Constructs project specific dictionary containing prior model related objects
+
+To construct the dictionary, the code will create an instance of the PriorHandler
+class. Utilizing the methods of this class then loads the covariance related
+objects.
+
+Inputs:
+    - hyperp: dictionary storing set hyperparameter values
+    - options: dictionary storing the set options
+    - filepaths: class instance storing the filepaths
+    - load_covariance_: flag that dictates whether to load variants
+                        of the covariance
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import numpy as np
 import pandas as pd
 

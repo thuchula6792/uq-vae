@@ -1,17 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Sep 22 11:59:31 2019
-
-@author: Jon Wittmer, Hwan Goh
-"""
-
 ###############################################################################
 #                        Generate List of Scenarios                           #
 ###############################################################################
 def get_hyperparameter_combinations(hyperp):
     '''
-    description:
+    Description:
         converts a dictionary containing lists of possible hyperparameter values
         to a list of dictionaries containing all combinations of these
         hyperparameter values.
@@ -23,14 +17,15 @@ def get_hyperparameter_combinations(hyperp):
                          {'a': 2, 'b': 'c'},
                          {'a': 2, 'b': 'd'}]
 
-    inputs:
+    Inputs:
         hyperp   : either dictionary or class whose attributes are hyperparameters
 
-    outputs:
+    Outputs:
         scenarios : list of hyperparameter dictionaries.
                     each element of the list is one hyperparameter scenario
-    '''
 
+    Author: Jonathan Wittmer, Oden Institute, Austin, Texas 2020
+    '''
     hyperp_dict = hyperp.__dict__ if not isinstance(hyperp, dict) else hyperp
     hyperp_keys = list(hyperp_dict.keys())
     hyperp_vals = list(hyperp_dict.values())
@@ -54,6 +49,7 @@ def generate_combinations(curr_hyperp, hyperp_vals):
                        runs, this list gets shorter until there is only
                        a single hyperparameter list
 
+    Author: Jonathan Wittmer, Oden Institute, Austin, Texas 2020
     '''
     # reassign when it is not the last item - recursive algorithm
     if len(hyperp_vals) > 1:
@@ -89,6 +85,8 @@ def assemble_scenarios_dictionaries(combinations_list, hyperp_keys):
 
     outputs:
         scenarios         : list of dictionaries
+
+    Author: Jonathan Wittmer, Oden Institute, Austin, Texas 2020
     '''
     scenarios = []
     for scenario_list in combinations_list:

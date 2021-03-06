@@ -1,3 +1,21 @@
+'''Constructs project specific dictionary containing dataset related objects
+
+To construct the dictionary, the code will create an instance of the DataHandler
+class. Utilizing the methods of this class then generates the objects to be
+stored in the dictionary. Suggested methods of this class to utilize are:
+    1) loading the training and testing dataset
+    2) adding noise to the training/testing dataset
+    3) form the noise regularization matrix
+    4) construct the measurement matrix for the case where
+       the parameter-to-observable map is linear
+
+Inputs:
+    - hyperp: dictionary storing set hyperparameter values
+    - options: dictionary storing the set options
+    - filepaths: class instance storing the filepaths
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import numpy as np
 import pandas as pd
 

@@ -1,11 +1,7 @@
+'''Constructs project specific filepaths for saving generated objects
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun May  28 10:16:28 2020
-
-@author: hwan
-"""
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import os
 
 from utils_io.value_to_string import value_to_string

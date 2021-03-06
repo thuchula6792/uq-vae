@@ -62,7 +62,7 @@ def training(hyperp, options, filepaths,
     #=== Non-distributed Training ===#
     if options.distributed_training == 0:
         #=== Neural Network ===#
-        NN = VAE(hyperp, options,
+        nn = VAE(hyperp, options,
                  input_dimensions, latent_dimensions,
                  kernel_initializer, bias_initializer,
                  positivity_constraint_log_exp)
@@ -72,7 +72,7 @@ def training(hyperp, options, filepaths,
 
         #=== Training ===#
         optimize(hyperp, options, filepaths,
-                 NN, optimizer,
+                 nn, optimizer,
                  input_and_latent_train, input_and_latent_val, input_and_latent_test,
                  input_dimensions, latent_dimensions, num_batches_train,
                  data_dict["noise_regularization_matrix"],
@@ -84,7 +84,7 @@ def training(hyperp, options, filepaths,
         dist_strategy = tf.distribute.MirroredStrategy()
         with dist_strategy.scope():
             #=== Neural Network ===#
-            NN = VAE(hyperp, options,
+            nn = VAE(hyperp, options,
                      input_dimensions, latent_dimensions,
                      kernel_initializer, bias_initializer,
                      positivity_constraint_log_exp)
@@ -95,7 +95,7 @@ def training(hyperp, options, filepaths,
         #=== Training ===#
         optimize_distributed(dist_strategy,
                 hyperp, options, filepaths,
-                NN, optimizer,
+                nn, optimizer,
                 input_and_latent_train, input_and_latent_val, input_and_latent_test,
                 input_dimensions, latent_dimensions, num_batches_train,
                 data_dict["noise_regularization_matrix"],

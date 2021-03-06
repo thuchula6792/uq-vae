@@ -1,7 +1,15 @@
 # Paper:
-* The paper associated with this code is titled
-  "Solving Bayesian Inverse Problems via Variational Autoencoders"
-  and can be found at: https://arxiv.org/abs/1912.04212
+The paper associated with this code is titled
+"Solving Bayesian Inverse Problems via Variational Autoencoders"
+and can be found at: https://arxiv.org/abs/1912.04212
+
+# Overview:
+We developed a variational inference based theoretical framework for uncertainty
+quantification in Bayesian inverse problems. Implementability of this theory is
+achieved through consideration of amortized inference over a dataset which, in
+turn, naturally lends itself to reparameterization by a neural network. The
+resulting variational autoencoder is able to perform rapid Bayesian inference of
+parameters of interest.
 
 # Code Structure:
 * Below is a description of the source codes as well as the key codes in my
@@ -16,6 +24,8 @@
   implemented.
 
 ## src:
+* `file_paths_.py`:                     Class containing file paths for neural
+                                        network and training related objects
 * `data_handler.py`:                    Class that loads and processes data
 * `form_train_val_test_tf_batches.py`:  Form training, validation and test batches
                                         from loaded data using Tensorflow's Dataset
@@ -29,8 +39,6 @@
                                         for scheduled routines
 * `schedule_and_run.py`:                Uses hyperparameter combinations to run a distributed
                                         schedule of training routines using mpi4py
-* `file_paths_.py`:                     Class containing file paths for neural
-                                        network and training related objects
 
 ## projects:
 * Contains project specific wrappers and routines. Note that the drivers are agnostic to the project. Project dependent codes are all stored in utils_project

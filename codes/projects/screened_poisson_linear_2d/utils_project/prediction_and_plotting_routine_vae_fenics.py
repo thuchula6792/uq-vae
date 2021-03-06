@@ -78,11 +78,11 @@ def predict_and_plot(hyperp, options, filepaths):
     state_obs_test = data.qoi_test
 
     #=== Load Trained Neural Network ===#
-    NN = VAE(hyperp, options,
+    nn = VAE(hyperp, options,
              input_dimensions, latent_dimensions,
              None, None,
              positivity_constraint_log_exp)
-    NN.load_weights(filepaths.trained_NN)
+    nn.load_weights(filepaths.trained_nn)
 
     #=== Selecting Samples ===#
     sample_number = 128
@@ -96,18 +96,18 @@ def predict_and_plot(hyperp, options, filepaths):
     df_qoi_specific.to_csv(filepaths.qoi_specific + '.csv', index=False)
 
     #=== Predictions ===#
-    start_time_NN = time.time()
-    posterior_mean_pred, posterior_cov_pred = NN.encoder(state_obs_test_sample)
-    elapsed_time_NN = time.time() - start_time_NN
-    print('Time taken for neural network inference: %.4f' %(elapsed_time_NN))
-    posterior_pred_draw = NN.reparameterize(posterior_mean_pred, posterior_cov_pred)
+    start_time_nn = time.time()
+    posterior_mean_pred, posterior_cov_pred = nn.encoder(state_obs_test_sample)
+    elapsed_time_nn = time.time() - start_time_nn
+    print('Time taken for neural network inference: %.4f' %(elapsed_time_nn))
+    posterior_pred_draw = nn.reparameterize(posterior_mean_pred, posterior_cov_pred)
 
     posterior_mean_pred = posterior_mean_pred.numpy().flatten()
     posterior_cov_pred = posterior_cov_pred.numpy().flatten()
     posterior_pred_draw = posterior_pred_draw.numpy().flatten()
 
     if options.model_aware == 1:
-        state_obs_pred_draw = NN.decoder(np.expand_dims(posterior_pred_draw, 0))
+        state_obs_pred_draw = nn.decoder(np.expand_dims(posterior_pred_draw, 0))
         state_obs_pred_draw = state_obs_pred_draw.numpy().flatten()
 
     #=== Plotting Prediction ===#

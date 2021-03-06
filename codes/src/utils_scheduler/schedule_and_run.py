@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sun Sep 22 11:59:31 2019
-
-@author: Jon Wittmer
+Author: Jonathan Wittmer, Oden Institute, Austin, Texas 2020
 """
 
 from mpi4py import MPI

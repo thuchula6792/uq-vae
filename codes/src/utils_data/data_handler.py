@@ -1,3 +1,25 @@
+'''Manipulates dataset related objects
+
+This class contains methods associated with manipulation of the training and
+testing dataset. Methods include:
+    1) loading the training and testing dataset
+    2) adding noise to the training/testing dataset
+    3) form the noise regularization matrix
+    4) construct the measurement matrix for the case where
+       the parameter-to-observable map is linear
+    5) normalizing the data
+
+Inputs:
+    - hyperp: dictionary storing set hyperparameter values
+    - options: dictionary storing the set options
+    - filepaths: class instance storing the filepaths
+    - obs_indices: array storing the indices of the observation points
+    - poi_dimensions: dimension of the parameter-of-interest
+    - qoi_dimensions: dimension of the quantity-of-interest
+    - state_dimensions: dimension of the state before measurement has occurred
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import time
 
 import numpy as np

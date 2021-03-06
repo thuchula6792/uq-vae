@@ -1,3 +1,22 @@
+'''Class for training, validation and testing metrics
+
+For the distributed strategy, the only difference in terms of metrics is how
+mean_loss_train is computed per batch. In particular, the metrics.Mean() class
+cannot be used.
+
+The training metrics include:
+    - the Tensorflow class metrics.Mean() which computes the mean of the given values
+    - storage arrays for the metrics at each epoch
+    - Tensorflow summary scalars for Tensorboard visualization of metrics
+
+The methods include:
+    - update_tensorboard(): recording the metrics for Tensorboard visualization
+    - update_storage_arrays(): recording the metrics for your own tracking method
+    - reset_metrics(): resetting the means at each epoch
+    - save_metrics(): exporting metrics to uq-vae/trained_nns/
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import tensorflow as tf
 import numpy as np
 import pandas as pd
@@ -214,4 +233,4 @@ class Metrics:
                 self.storage_array_relative_error_input_decoder
 
         df_metrics = pd.DataFrame(metrics_dict)
-        df_metrics.to_csv(filepaths.trained_NN + "_metrics" + '.csv', index=False)
+        df_metrics.to_csv(filepaths.trained_nn + "_metrics" + '.csv', index=False)
