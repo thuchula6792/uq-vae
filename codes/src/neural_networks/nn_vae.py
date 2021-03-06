@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Feb 21 16:45:14 2020
+'''Class for the UQ-VAE when the posterior model possesses a diagonal covariance
 
-@author: hwan
-"""
 
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import tensorflow as tf
 from tensorflow.keras.layers import Dense, Conv2D, Flatten
 from tensorflow.keras.initializers import RandomNormal

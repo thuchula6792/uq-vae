@@ -1,10 +1,53 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Oct 25 12:31:44 2019
+'''Distributed optimization routine
 
-@author: hwan
-"""
+This is the distributed optimization routine for the case where the model
+posterior possesses a full covariance and the parameter-to-observable map is
+modelled and linear
+
+In preparation for optimization, this script will:
+    1) Constuct any objects necessary to be passed to the loss functionals
+    2) Instantiate the Metrics class
+    3) Instantiate the Tensorboard summary_writer
+    4) Build the neural network and display a summary
+
+Then, per epoch, this script will:
+    1) Using train_step() form the batched gradient using the training set
+    2) Using val_step() evaluate the metrics on the validation set
+    3) Using test_step() evaluate the metrics on the testing set
+    4) Update the Tensorboard metrics
+    5) Update the storage arrays
+    6) Display and reset the current metric values
+    7) Output the metrics, current values of the neural network weights and
+       dump the hyperp and options dictionaries into uq-vae/trained_nns/
+
+Inputs:
+    - dist_strategy: the distribution strategy used for parallelized optimization
+    - hyperp: dictionary storing set hyperparameter values
+    - options: dictionary storing the set options
+    - filepaths: instance of the FilePaths class storing the default strings for
+                 importing and exporting required objects.
+    - nn: the neural network to be trained
+    - optimizer: Tensorflow optimizer to be used
+    - input_and_latent_: batched train, validation and testing datasets
+    - input_dimension: dimension of the input layer of the neural network
+    - latent_dimension: dimension of the model posterior mean estimate output by
+                        the encoder
+    - num_batches_train: batch_size
+    - noise_regularization_matrix: noise covariance matrix for the likelihood term
+    - measurement_matrix: operator that extracts the values at the measurement points
+                          to be used in the trace term of the likelihood term
+                          which appears in the case of a linear
+                          parameter-to-observable map
+    - prior_mean: mean of the prior model
+    - prior_cov_inv: inverse of the covariance of the prior model
+    - forward_matrix: the matrix representing the model of the linear
+                      parameter-to-observable map
+    - solve_forward_model: operation of the parameter-to-observable map
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import sys
 sys.path.append('../..')
 

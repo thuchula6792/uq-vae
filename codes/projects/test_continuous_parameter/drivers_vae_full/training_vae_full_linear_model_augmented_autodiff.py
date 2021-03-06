@@ -6,7 +6,7 @@ The parameter-to-observable map is modelled and required to be linear
 
 In preparation for training the neural network, the code will:
     1) Construct a dictionary containing the set hyperparameter values
-       read from the .yaml file
+       either read from the .yaml file or passed to by a scheduler
     2) Construct a dictionary containing the set options
        read from the .yaml file
     3) Construct the project specific as well as neural-network related

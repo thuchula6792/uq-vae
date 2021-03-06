@@ -11,7 +11,7 @@ This includes:
     - scenarios_trained.txt: list of scenarios trained. Each entry contains the
                              value of the hyperparameter specified in your search
     - validation_losses.csv: list of the final validation loss for each of the
-                              hyperparameter scenarios
+                             hyperparameter scenarios
 
 Inputs:
     - hyperp_of_interest_dict: dictionary of the hyperparameters to be searched

@@ -1,37 +1,37 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''Calls the training routine for Bayesian optimization of hyperparameters
+'''Bayesian hyperparameter optimization routine
 
-The parameter-to-observable map is modelled is required to be linear
-The package scikit-opt is used for Bayesian hyperparameter optimization
+This script contains the function objective_functional() that is the target loss
+functional for Bayesian hyperparameter optimization.
 
-In preparation for optimization of hyperparameters, the code will:
-    1) Construct a dictionary containing the set hyperparameter values
-       read from the .yaml file
-    2) Construct a dictionary containing the set options
-       read from the .yaml file
-    3) Construct the project specific as well as neural-network related
-       FilePaths classes from the hyperp and options dictionaries
-    4) Construct a dictionary containing loaded training and testing data
-       and related objects
-    5) Construct a dictionary containing loaded prior related objects
+The function objective_functional() will:
+    1) Update a dictionary with the new hyperparameter values
+    2) Update the neural-network related FilePaths classes using the
+       new values in the updated hyperp dictionary
+    3) Pass the updated hyperparameter dictionary to the training routine
+This is then passed to gp_minimize() which conducts the optimization.
 
-You will need to specify:
-    - In add_options():
-        - Whether to use distributed training
-        - Which gpus to utilize
-        - Whether to delete the trained suboptimal neural networks
-    - Number of neural networks of to be trained through setting the number of
-      calls of the training routine
-    - The hyperparameters of interest and their corresponding ranges.
-      Unspecified hyperparameters will obtain a default value from that set in the
-      hyperp_.yaml file
+Once the n_calls number of iterations are complete, the function
+output_results() is called to export the information of the hyperparameter
+optimization procedure.
 
-Outputs will be stored in the following directories:
-    - uq-vae/hyperparameter_optimization/ which contains:
-        - /outputs/ for metrics and convergence data
-        - /trained_nns/ for the optimal trained network and associated training metrics
-        - /tensorboard/ for Tensorboard training metrics of the optimal network
+Inputs:
+    - hyperp: dictionary storing set hyperparameter values
+    - options: dictionary storing the set options
+    - filepaths: instance of the FilePaths class storing the default strings for
+                 importing and exporting required objects. This is to be updated
+                 each time a new set of hyperparameter values is specified
+    - n_calls: number of calls of the objective functional for optimization
+    - space: skopt object storing the current hyperparameter values to be used
+    - hyperp_of_interest_dict: dictionary of the hyperparameters to be searched
+                               and their ranges
+    - FilePathsClass: class storing the strings for importing and exporting
+                      required objects. This class is required here for updating
+                      the instance filepaths each time a new set of
+                      hyperparameter values is specified.
+    - project_paths: instance of the FilePathsProject class containing
+                     project specific strings
 
 Author: Hwan Goh, Oden Institute, Austin, Texas 2021
 '''
