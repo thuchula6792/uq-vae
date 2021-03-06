@@ -1,3 +1,0 @@
-#!/bin/bash
-
-rsync -rP Lonestar:/work/06537/hwangoh/lonestar/uq-vae/trained_nns .
