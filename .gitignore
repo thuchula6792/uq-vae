@@ -13,5 +13,5 @@ tags
 copy_and_zip
 overwrite_server_runs_branch
 quick_git
-retrieve*
+retrieve
 slurm*
