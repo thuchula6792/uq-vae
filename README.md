@@ -16,19 +16,20 @@ parameters of interest.
   input/output system.
 * The design philosophy underlying my input/output system is based on the clear
   separation of the project and the neural network. Indeed:
-    * The script in `/projects/utils_project/` oversee the
-      importation and preparation for optimization the project specific objects.
+    * The scripts in `/projects/utils_project/` oversee the
+      importation and preparation of the project specific objects for
+      optimization.
     * The scripts in `/src/` oversee the optimization and exportation
       of a neural network. These scripts are agnostic to the project; they
       maintain an arbitrary view of the project specific objects.
-* However, there is no need to use my input/output system; you can use
+* However, there is no need to use my input/output system. You can use
   your own input/output codes so long as the appropriate calls to the neural
   networks in `/src/neural_networks/` and optimization routines in `/src/optimize/` are
   implemented.
-* For an illustrative example, see the test cases in `/codes/projects/test_/`. To run
-  this, use any of the training drivers in `/codes/projects/test_/training_.py`. You may
+* For an illustrative example, see the test cases in `/projects/test_/`. To run
+  these tests, use any of the training drivers in `/projects/test_/training_.py`. You may
   have to first generate the training and testing data using
-  `/codes/projects/test_/data_generator/generate_data.py`.
+  `/projects/test_/data_generator/generate_data.py`.
 
 ## src:
 * `file_paths_.py`:                     Class containing file paths for neural
@@ -48,7 +49,8 @@ parameters of interest.
                                         schedule of training routines using mpi4py
 
 ## projects:
-* Contains project specific wrappers and routines. Note that the drivers are agnostic to the project. Project dependent codes are all stored in `/utils_project/`
+* Contains project specific wrappers and routines. Note that the drivers in `/project/drivers_/` are agnostic to the project.
+  Project dependent codes are all stored in `/project/utils_project/`
 * drivers:
     * `training_.py`:                  Drives the training routine. Consists of the
                                        Hyperparameter class and calls the FilePaths class and the training_routine
