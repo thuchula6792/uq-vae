@@ -28,20 +28,20 @@ parameters of interest.
   implemented.
 
 ## src:
-* `file_paths_.py`:                     Class containing file paths for neural
+* `/utils_io/file_paths_.py`:           Class containing file paths for neural
                                         network and training related objects
-* `data_handler.py`:                    Class that loads and processes data
-* `form_train_val_test_tf_batches.py`:  Form training, validation and test batches
+* `/utils_data/data_handler.py`:        Class that loads and processes data
+* `/utils_training/form_train_val_test_tf_batches.py`:  Form training, validation and test batches
                                         from loaded data using Tensorflow's Dataset
                                         API
-* `nn_.py`:                             The neural network
-* `functionals.py`:                     Functionals that form the overall loss
+* `/neural_networks/nn_.py`:            The neural network
+* `/utils_training/functionals.py`:     Functionals that form the overall loss
                                         functional
-* `optimize_.py`:                       The optimization routine for the neural network
-* `metrics_.py`:                        Class storing and updating the optimization information
-* `get_hyperparameter_combinations.py`: Forms combinations of the hyperparameters
+* `/optimize/optimize_.py`:             The optimization routine for the neural network
+* `/utils_training/metrics_.py`:        Class storing and updating the optimization information
+* `/utils_hyperparameter_optimization/get_hyperparameter_combinations.py`: Forms combinations of the hyperparameters
                                         for scheduled routines
-* `schedule_and_run.py`:                Uses hyperparameter combinations to run a distributed
+* `/utils_scheduler/schedule_and_run.py`: Uses hyperparameter combinations to run a distributed
                                         schedule of training routines using mpi4py
 
 ## projects:
@@ -94,7 +94,7 @@ parameters of interest.
        directory. To view the Tensorboard metrics, use 'tensorboard
        --logdir=tensorboard' while in the uq-vae directory and click on the
        generated link.
-    3. Predict and plot using train neural network.\
+    3. Predict and plot using trained neural network.\
        In
         `/codes/projects/test_discrete_parameter/drivers_vae_full/`, run
        `prediction_and_plotting_vae_full.py`. Your plots should be stored in the
