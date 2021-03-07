@@ -84,7 +84,7 @@ parameters of interest.
        In
        `/codes/projects/test_discrete_parameter/data_generator/`, run `generate_data.py`.
        Your data should now be generated into the `datasets` directory at the
-       same level a the `uq-vae` directory.
+       same level as the `uq-vae` directory.
     2. Train the neural network.\
        In
        `/codes/projects/test_discrete_parameter/drivers_vae_full/`, run
