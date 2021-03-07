@@ -215,7 +215,7 @@ def optimize_distributed(dist_strategy,
             metrics.mean_loss_test_posterior(unscaled_replica_batch_loss_test_posterior)
 
             metrics.mean_relative_error_input_vae(relative_error(
-                batch_input_test, batch_input_likelihood_test))
+                batch_input_test, batch_likelihood_test))
             metrics.mean_relative_error_latent_posterior(relative_error(
                 batch_latent_test, batch_post_mean_test))
             metrics.mean_relative_error_input_decoder(relative_error(

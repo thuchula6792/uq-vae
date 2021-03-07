@@ -30,8 +30,8 @@ import pandas as pd
 # Import src code
 from utils_training.form_train_val_test import form_train_val_test_tf_batches
 from neural_networks.nn_vaeiaf import VAEIAF
-from optimize.optimize_vaeiaf_model_aware import optimize
-from optimize.optimize_distributed_vaeiaf_model_aware import optimize_distributed
+from optimize.single.optimize_vaeiaf_model_aware import optimize
+from optimize.distributed.optimize_distributed_vaeiaf_model_aware import optimize_distributed
 from utils_misc.positivity_constraints import positivity_constraint_exp,\
                                               positivity_constraint_log_exp
 

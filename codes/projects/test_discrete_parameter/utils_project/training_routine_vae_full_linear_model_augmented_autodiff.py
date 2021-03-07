@@ -31,8 +31,8 @@ import pandas as pd
 # Import src code
 from utils_training.form_train_val_test import form_train_val_test_tf_batches
 from neural_networks.nn_vae_full import VAE
-from optimize.optimize_vae_full_linear_model_augmented_autodiff import optimize
-from optimize.optimize_distributed_vae_full_linear_model_augmented_autodiff import\
+from optimize.single.optimize_vae_full_linear_model_augmented_autodiff import optimize
+from optimize.distributed.optimize_distributed_vae_full_linear_model_augmented_autodiff import\
         optimize_distributed
 
 # Import project utilities
