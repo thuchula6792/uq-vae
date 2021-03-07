@@ -26,10 +26,6 @@ parameters of interest.
   your own input/output codes so long as the appropriate calls to the neural
   networks in `/src/neural_networks/` and optimization routines in `/src/optimize/` are
   implemented.
-* For an illustrative example, see the test cases in `/projects/test_/`. To run
-  these tests, use any of the training drivers in `/projects/test_/training_.py`. You may
-  have to first generate the training and testing data using
-  `/projects/test_/data_generator/generate_data.py`.
 
 ## src:
 * `file_paths_.py`:                     Class containing file paths for neural
