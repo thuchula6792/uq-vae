@@ -89,8 +89,8 @@ parameters of interest.
        In
        `/codes/projects/test_discrete_parameter/drivers_vae_full/`, run
        `training_vae_full_linear_model_augmented_autodiff.py`. Your trained
-       neural network should be stored in the `uq-vae/trained_nns/` directory as
-       well as tracked Tensorboard metrics in the `uq-vae/tensorboard/`
+       neural network should be stored in the `uq-vae/trained_nns/` directory
+       and the tracked Tensorboard metrics in the `uq-vae/tensorboard/`
        directory. To view the Tensorboard metrics, use 'tensorboard
        --logdir=tensorboard' while in the uq-vae directory and click on the
        generated link.
