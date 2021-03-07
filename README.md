@@ -47,7 +47,7 @@ parameters of interest.
 ## projects:
 * Contains project specific wrappers and routines. Note that the drivers in `/project/drivers_/` are agnostic to the project.
   Project dependent codes are all stored in `/project/utils_project/`
-* drivers:
+* `/drivers_/`:
     * `training_.py`:                  Drives the training routine. Consists of the
                                        Hyperparameter class and calls the FilePaths class and the training_routine
                                        method
@@ -58,7 +58,7 @@ parameters of interest.
                                        network
     * `scheduler_training_.py`:        Drives the formation of hyperparameter combinations
                                        and schedule of training routines using mpi4py
-* utils_project:
+* `/utils_project/`:
 	* `file_paths_project.py`:  Class containing file paths for project specific objects
     * `construct_data_dict.py`: Constructs dictionary storing processed data and
                                 data related objects to be passed to be the
@@ -72,7 +72,7 @@ parameters of interest.
                                 form and save predictions given trained
                                 neural network
 
-* config_files:
+* `/config_files/`:
     * `hyperparameters_.yaml`: YAML file containing hyperparameters for training
                                the neural network
     * `options_.yaml`:         YAML file containing the options for the project
