@@ -1,8 +1,3 @@
-# Paper:
-The paper associated with this code is titled
-"Solving Bayesian Inverse Problems via Variational Autoencoders"
-and can be found at: https://arxiv.org/abs/1912.04212
-
 # Overview:
 We developed a variational inference based theoretical framework for uncertainty
 quantification in Bayesian inverse problems. Implementability of this theory is
@@ -10,6 +5,11 @@ achieved through consideration of amortized inference over a dataset which, in
 turn, naturally lends itself to reparameterization by a neural network. The
 resulting variational autoencoder is able to perform rapid Bayesian inference on
 the parameters of interest.
+
+# Paper:
+The paper associated with this code is titled
+"Solving Bayesian Inverse Problems via Variational Autoencoders"
+and can be found at: https://arxiv.org/abs/1912.04212
 
 # Code Structure:
 * Below is a description of the source codes as well as the key codes in my
