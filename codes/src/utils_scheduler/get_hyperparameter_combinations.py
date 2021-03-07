@@ -4,25 +4,23 @@
 #                        Generate List of Scenarios                           #
 ###############################################################################
 def get_hyperparameter_combinations(hyperp):
-    '''
-    Description:
-        converts a dictionary containing lists of possible hyperparameter values
-        to a list of dictionaries containing all combinations of these
-        hyperparameter values.
+    '''Converts a dictionary containing lists of possible hyperparameter values
+    to a list of dictionaries containing all combinations of these
+    hyperparameter values.
 
-        Ex. hyperp = {'a': [1, 2],
-                       'b': ['c', 'd']}
-         => scenarios = [{'a': 1, 'b': 'c'},
-                         {'a': 1, 'b': 'd'},
-                         {'a': 2, 'b': 'c'},
-                         {'a': 2, 'b': 'd'}]
+    Ex. hyperp = {'a': [1, 2],
+                    'b': ['c', 'd']}
+        => scenarios = [{'a': 1, 'b': 'c'},
+                        {'a': 1, 'b': 'd'},
+                        {'a': 2, 'b': 'c'},
+                        {'a': 2, 'b': 'd'}]
 
     Inputs:
-        hyperp   : either dictionary or class whose attributes are hyperparameters
+        - hyperp: either dictionary or class whose attributes are hyperparameters
 
     Outputs:
-        scenarios : list of hyperparameter dictionaries.
-                    each element of the list is one hyperparameter scenario
+        - scenarios: list of hyperparameter dictionaries.
+                     each element of the list is one hyperparameter scenario
 
     Author: Jonathan Wittmer, Oden Institute, Austin, Texas 2020
     '''
@@ -35,19 +33,17 @@ def get_hyperparameter_combinations(hyperp):
     return scenarios
 
 def generate_combinations(curr_hyperp, hyperp_vals):
-    '''
-    description:
-        recursive algorithm to generate a list of lists
-        containing all the combinations of given set of
-        inputs.
+    '''Recursive algorithm to generate a list of lists
+    containing all the combinations of given set of
+    inputs.
 
-    inputs:
+    Inputs:
         curr_hyperp : loop through the values of this hyperparameter
-                       appending all the combinations of each subsequent
-                       hyperparameter.
+                      appending all the combinations of each subsequent
+                      hyperparameter.
         hyperp_vals : list of the remaining hyperparameters. As the algorithm
-                       runs, this list gets shorter until there is only
-                       a single hyperparameter list
+                      runs, this list gets shorter until there is only
+                      a single hyperparameter list
 
     Author: Jonathan Wittmer, Oden Institute, Austin, Texas 2020
     '''
@@ -75,16 +71,14 @@ def generate_combinations(curr_hyperp, hyperp_vals):
     return output
 
 def assemble_scenarios_dictionaries(combinations_list, hyperp_keys):
-    '''
-    description:
-        converts list of lists to list of dictionaries
+    '''Converts list of lists to list of dictionaries
 
-    inputs:
-        combinations_list : list of lists. the hyperparameter values.
-        hyperp_keys      : list of keys. the hyperparameter names
+    Inputs:
+        - combinations_list: list of lists. the hyperparameter values.
+        - hyperp_key: list of keys. the hyperparameter names
 
-    outputs:
-        scenarios         : list of dictionaries
+    Outputs:
+        - scenarios: list of dictionaries
 
     Author: Jonathan Wittmer, Oden Institute, Austin, Texas 2020
     '''

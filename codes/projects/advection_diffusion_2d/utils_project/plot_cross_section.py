@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Oct 9 22:03:02 2020
+'''Plotting cross-section for displaying uncertainty estimates for 2D problems
 
-@author: hwan
-"""
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable

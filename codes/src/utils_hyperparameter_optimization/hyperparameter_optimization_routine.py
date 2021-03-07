@@ -10,6 +10,8 @@ The function objective_functional() will:
     2) Update the neural-network related FilePaths classes using the
        new values in the updated hyperp dictionary
     3) Pass the updated hyperparameter dictionary to the training routine
+    4) Output the loss on the validation dataset which acts as the metric for
+       Bayesian optimization
 This is then passed to gp_minimize() which conducts the optimization.
 
 Once the n_calls number of iterations are complete, the function
@@ -33,7 +35,7 @@ Inputs:
     - project_paths: instance of the FilePathsProject class containing
                      project specific strings
 
-Author: Hwan Goh, Oden Institute, Austin, Texas 2021
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
 '''
 import os
 import shutil

@@ -3,10 +3,23 @@
 '''Class for the UQ-VAE when the posterior model possesses a diagonal covariance
 
 In preparation for constructing the neural network, this code will:
-    - Construct the architecture list that stores the number of nodes in
-      each layer of the neural network
-    - Construct the activations list that stores the activation function used at
-      each layer
+    1) Construct the architecture list that stores the number of nodes in
+       each layer of the neural network
+    2) Construct the activations list that stores the activation function used at
+       each layer
+    3) Instantiate the Encoder class using the architecture and activations lists
+    4) Instantiate the Decoder class using the architecture and activations lists
+
+Inputs:
+    - hyperp: dictionary storing set hyperparameter values
+    - options: dictionary storing the set options
+    - input_dimension: dimension of the input layer of the neural network
+    - latent_dimension: dimension of the model posterior mean estimate output by
+                        the encoder
+    - kernel_initializer: probability density of the initial guess of the weights
+    - bias_initializer: probability density of the initial guess of the biases
+    - positivity constraint: function mapping to positive values. Use
+                             tf.identity if positivity is not required
 
 Author: Hwan Goh, Oden Institute, Austin, Texas 2020
 '''

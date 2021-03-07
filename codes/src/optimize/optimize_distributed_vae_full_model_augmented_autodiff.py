@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-'''Distributed optimization routine
-
-This is the distributed optimization routine for the case where the model
+'''Distributed optimization routine for the case where the model
 posterior possesses a full covariance and the parameter-to-observable map is
 modelled
 

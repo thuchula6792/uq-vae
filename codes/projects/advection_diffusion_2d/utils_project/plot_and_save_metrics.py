@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Nov 17 11:47:02 2019
+'''Plotting routine for metrics stored in storage_array_
 
-@author: hwan
-"""
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt

@@ -4,6 +4,7 @@
 
 Following Bayesian optimization of select hyperparameters, this code will output
 information on the procedure to uq-vae/hyperparameter_optimization/outputs/.
+
 This includes:
     - convergence.png: convergence graph over the total number of calls
     - optimal_set_of_hyperparameters.txt: the value of the optimal

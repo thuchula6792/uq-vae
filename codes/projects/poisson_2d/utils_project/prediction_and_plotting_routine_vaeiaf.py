@@ -1,10 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Oct 26 21:17:53 2019
+'''Prediction and plotting routine
 
-@author: hwan
-"""
+In preparation for prediction and plotting, this script will:
+    1) Load the obs_dimensions
+    2) Specify the input_dimensions and latent_dimensions
+    3) Instantiate the DataHandler class
+    4) Instantiate the neural network
+    5) Load the trained neural network weights
+    6) Select and prepare an illustrative test example
+    7) Draw from the predicted posterior by utilizing nn.iaf_chain_posterior as
+       well as the encoder
+    8) Predict the state using the draw from the posterior either using the
+       modelled or learned (decoder) parameter-to-observable map
+    9) Plot the prediction
+
+Inputs:
+    - hyperp: dictionary storing set hyperparameter values
+    - options: dictionary storing the set options
+    - filepaths: instance of the FilePaths class storing the default strings for
+                 importing and exporting required objects.
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import sys
 sys.path.append('../../../../..')
 

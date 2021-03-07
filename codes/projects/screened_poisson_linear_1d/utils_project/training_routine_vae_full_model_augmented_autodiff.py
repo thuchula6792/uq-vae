@@ -1,3 +1,26 @@
+'''Training routine for the case where posterior model possesses a full
+covariance and the parameter-to-observable map is modelled
+
+In preparation for prediction and plotting, this script will:
+    1) Specify which GPU to use for optimization
+    2) Form the batches for the training, validation and testing sets
+    3) Specify the input_dimensions and latent_dimensions
+    4) Prepare the model for the parameter-to-observable map
+    5) Specify the probability density for the initial guess of the weights and bias
+    6) Instantiate the neural network
+    7) Specify the optimizer
+    8) Call the optimization routine
+
+Inputs:
+    - hyperp: dictionary storing set hyperparameter values
+    - options: dictionary storing the set options
+    - filepaths: instance of the FilePaths class storing the default strings for
+                 importing and exporting required objects.
+    - data_dict: dictionary storing the dataset related objects
+    - prior_dict: dictionary storing the prior related objects
+
+Author: Hwan Goh, Oden Institute, Austin, Texas 2020
+'''
 import os
 import sys
 
