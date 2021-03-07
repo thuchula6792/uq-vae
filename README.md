@@ -83,7 +83,7 @@ parameters of interest.
                                as well as the neural network
 
 # Illustrative Example:
-To run an illustrative example, please follow these steps:
+* To run an illustrative example, please follow these steps:
     1. Generate the data. In
        `/codes/projects/test_discrete_parameter/data_generator/`, run `generate_data.py`.
        Your data should now be generated into the `datasets` directory at the
