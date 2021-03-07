@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Forms batches from training and testing datasets
 
 Inputs:

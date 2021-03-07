@@ -19,7 +19,7 @@ In preparation for training the neural network, the code will:
 You will need to specify:
     - In add_options():
         - Whether to use distributed training
-        - Which gpus to utilize
+        - Which GPUs to utilize
 
 Outputs will be stored in the following directories:
     - uq-vae/trained_nns/ for trained network and training metrics

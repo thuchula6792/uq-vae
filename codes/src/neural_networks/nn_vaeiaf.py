@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Class for the UQ-VAE when the model posterior is modelled using
 inverse autoregressive flows
 

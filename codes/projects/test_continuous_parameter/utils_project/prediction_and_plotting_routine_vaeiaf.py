@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Prediction and plotting routine
 
 In preparation for prediction and plotting, this script will:

@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import numpy as np
 import tensorflow as tf
 import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"

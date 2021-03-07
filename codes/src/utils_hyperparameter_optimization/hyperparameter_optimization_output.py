@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Outputs information of Bayesian hyperparameter optimization
 
 Following Bayesian optimization of select hyperparameters, this code will output

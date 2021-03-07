@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Optimization routine for the case where the model
 posterior is modelled using inverse autoregressive flow and the
 parameter-to-observable map is learned

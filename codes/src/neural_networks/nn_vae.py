@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Class for the UQ-VAE when the posterior model possesses a diagonal covariance
 
 In preparation for constructing the neural network, this code will:

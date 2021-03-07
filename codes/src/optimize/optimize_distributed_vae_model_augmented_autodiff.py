@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Distributed optimization routine for the case where the model
 posterior possesses a diagonal covariance and the parameter-to-observable map is
 modelled

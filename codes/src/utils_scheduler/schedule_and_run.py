@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Author: Jonathan Wittmer, Oden Institute, Austin, Texas 2020
 """

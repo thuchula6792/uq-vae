@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Plotting cross-section for displaying uncertainty estimates for 2D problems
 
 Author: Hwan Goh, Oden Institute, Austin, Texas 2020

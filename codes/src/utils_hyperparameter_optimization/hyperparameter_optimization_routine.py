@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Bayesian hyperparameter optimization routine
 
 This script contains the function objective_functional() that is the target loss

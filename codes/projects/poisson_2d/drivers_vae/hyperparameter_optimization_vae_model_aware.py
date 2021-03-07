@@ -20,7 +20,7 @@ In preparation for optimization of hyperparameters, the code will:
 You will need to specify:
     - In add_options():
         - Whether to use distributed training
-        - Which gpus to utilize
+        - Which GPUs to utilize
         - Whether to delete the trained suboptimal neural networks
     - Number of neural networks of to be trained through setting the number of
       calls of the training routine

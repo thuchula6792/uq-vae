@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Plotting routine for metrics stored in storage_array_
 
 Author: Hwan Goh, Oden Institute, Austin, Texas 2020

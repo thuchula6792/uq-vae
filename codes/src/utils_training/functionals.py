@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 '''Collection of terms that form loss functionals
 
 Author: Hwan Goh, Oden Institute, Austin, Texas 2020
