@@ -8,8 +8,8 @@ We developed a variational inference based theoretical framework for uncertainty
 quantification in Bayesian inverse problems. Implementability of this theory is
 achieved through consideration of amortized inference over a dataset which, in
 turn, naturally lends itself to reparameterization by a neural network. The
-resulting variational autoencoder is able to perform rapid Bayesian inference of
-parameters of interest.
+resulting variational autoencoder is able to perform rapid Bayesian inference on
+the parameters of interest.
 
 # Code Structure:
 * Below is a description of the source codes as well as the key codes in my
