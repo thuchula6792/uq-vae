@@ -81,3 +81,26 @@ parameters of interest.
                                the neural network
     * `options_.yaml`:         YAML file containing the options for the project
                                as well as the neural network
+
+# Illustrative Example:
+To run an illustrative example, please follow these steps:
+    1. Generate the data. In
+       `/codes/projects/test_discrete_parameter/data_generator/`, run `generate_data.py`.
+       Your data should now be generated into the `datasets` directory at the
+       same level a the `uq-vae` directory.
+    2. Train the neural network. In
+       `/codes/projects/test_discrete_parameter/drivers_vae_full/`, run
+       `training_vae_full_linear_model_augmented_autodiff.py`. Your trained
+       neural network should be stored in the `uq-vae/trained_nns/` directory as
+       well as tracked Tensorboard metrics in the `uq-vae/tensorboard/`
+       directory. To view the Tensorboard metrics, use 'tensorboard
+       --logdir=tensorboard' while in the uq-vae directory and click on the
+       generated link.
+    3. Predict and plot using train neural network. In
+        `/codes/projects/test_discrete_parameter/drivers_vae_full/`, run
+       `prediction_and_plotting_vae_full.py`. Your plots should be stored in the
+       `uq-vae/figures/` directory.
+
+# Contact:
+If you have any questions, please feel free to contact me at Hwan.Goh@gmail.com
+and I'll reply as soon as I can!
