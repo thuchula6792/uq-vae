@@ -97,11 +97,17 @@ and can be found at: https://arxiv.org/abs/1912.04212
        directory. To view the Tensorboard metrics, use 'tensorboard
        --logdir=tensorboard' while in the uq-vae directory and click on the
        generated link.
-    3. Predict and plot using trained neural network.\
+    3. Predict and plot using the trained neural network.\
        In
         `/codes/projects/test_discrete_parameter/drivers_vae_full/`, run
        `prediction_and_plotting_vae_full.py`. Your plots should be stored in the
-       `uq-vae/figures/` directory.
+       `uq-vae/figures/` directory.\
+       Note that you may not see anything too
+       interesting in the bivariate plots. This depends on the sample of the
+       testing set you're visualizing. To play around with different samples,
+       in
+       `/test_discrete_parameter/utils_project/prediction_and_plotting_routine_vae_full.py`
+       simply change the value of sample_number.
 
 # Contact:
 If you have any questions, please feel free to contact me at Hwan.Goh@gmail.com
