@@ -22,7 +22,7 @@ You will need to specify:
         - Whether to use distributed training
         - Which GPUs to utilize
         - Whether to delete the trained suboptimal neural networks
-    - Number of neural networks of to be trained through setting the number of
+    - Number of neural networks to be trained through setting the number of
       calls of the training routine
     - The hyperparameters of interest and their corresponding ranges.
       Unspecified hyperparameters will obtain a default value from that set in the
