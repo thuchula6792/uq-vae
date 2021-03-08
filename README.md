@@ -45,8 +45,8 @@ and can be found at: https://arxiv.org/abs/1912.04212
                                         schedule of training routines using mpi4py
 
 ## projects:
-* Contains project specific wrappers and routines. Note that the drivers in `/project/drivers_/` are agnostic to the project.
-  Project dependent codes are all stored in `/project/utils_project/`
+* Contains project specific wrappers and routines. Note that the drivers in `/projects/project_name/drivers_/` are agnostic to the project.
+  Project dependent codes are all stored in `/projects/project_name/utils_project/`
 * `/drivers_/`:
     * `training_.py`:                  Drives the training routine. Consists of the
                                        Hyperparameter class and calls the FilePaths class and the training_routine
