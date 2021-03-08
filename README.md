@@ -82,7 +82,10 @@ and can be found at: https://arxiv.org/abs/1912.04212
 * To run an illustrative example, please follow these steps:
     1. Generate the data.\
        In
-       `/codes/projects/test_discrete_parameter/data_generator/`, run `generate_data.py`.
+       `/codes/projects/test_discrete_parameter/data_generator/`, use `generate_data.py`
+       to generate a training dataset of size 5000 and a testing dataset of size
+       200 by setting the generate_train_data and generate_test_data booleans as
+       well as the num_data value in the Options class.
        Your data should now be generated into the `datasets` directory at the
        same level as the `uq-vae` directory.
     2. Train the neural network.\

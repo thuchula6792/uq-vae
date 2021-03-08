@@ -19,7 +19,7 @@ def plot_and_save_metrics(hyperp, options, filepaths):
 
     #=== Load Metrics ===#
     print('Loading Metrics')
-    df_metrics = pd.read_csv(filepaths.trained_NN + "_metrics" + '.csv')
+    df_metrics = pd.read_csv(filepaths.trained_nn + "_metrics" + '.csv')
     array_metrics = df_metrics.to_numpy()
 
     ####################
