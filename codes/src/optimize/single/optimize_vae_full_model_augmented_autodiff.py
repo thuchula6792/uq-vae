@@ -83,7 +83,7 @@ def optimize(hyperp, options, filepaths,
     if not os.path.exists(filepaths.directory_trained_nn):
         os.makedirs(filepaths.directory_trained_nn)
 
-    #=== Tensorboard ===# "tensorboard --logdir=Tensorboard"
+    #=== Tensorboard ===# "tensorboard --logdir=tensorboard"
     if os.path.exists(filepaths.directory_tensorboard):
         shutil.rmtree(filepaths.directory_tensorboard)
     summary_writer = tf.summary.create_file_writer(filepaths.directory_tensorboard)
