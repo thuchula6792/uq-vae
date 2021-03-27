@@ -51,7 +51,7 @@ import numpy as np
 from utils_training.metrics_vae import Metrics
 from utils_io.config_io import dump_attrdict_as_yaml
 from utils_training.functionals import\
-        loss_penalized_difference, loss_weighted_penalized_difference, relative_error
+        loss_penalized_difference, loss_diagonal_weighted_penalized_difference, relative_error
 
 import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"
 
@@ -107,7 +107,7 @@ def optimize_distributed(dist_strategy,
                                                                        infer_flag = False)
 
                 unscaled_replica_batch_loss_train_vae =\
-                        loss_weighted_penalized_difference(
+                        loss_diagonal_weighted_penalized_difference(
                                 batch_input_train, batch_likelihood_train,
                                 noise_regularization_matrix, 1)
                 unscaled_replica_batch_loss_train_iaf_posterior =\
@@ -116,7 +116,7 @@ def optimize_distributed(dist_strategy,
                                                 sample_flag = False,
                                                 infer_flag = True)
                 unscaled_replica_batch_loss_train_prior =\
-                        loss_weighted_penalized_difference(
+                        loss_diagonal_weighted_penalized_difference(
                             prior_mean, batch_posterior_sample_train,
                             prior_covariance_cholesky_inverse,
                             1)
@@ -157,7 +157,7 @@ def optimize_distributed(dist_strategy,
                                                                  sample_flag = True,
                                                                  infer_flag = False)
 
-            unscaled_replica_batch_loss_val_vae = loss_weighted_penalized_difference(
+            unscaled_replica_batch_loss_val_vae = loss_diagonal_weighted_penalized_difference(
                     batch_input_val, batch_likelihood_val,
                     noise_regularization_matrix, 1)
             unscaled_replica_batch_loss_val_iaf_posterior =\
@@ -165,7 +165,7 @@ def optimize_distributed(dist_strategy,
                                             batch_log_post_var_val,
                                             sample_flag = False,
                                             infer_flag = True)
-            unscaled_replica_batch_loss_val_prior = loss_weighted_penalized_difference(
+            unscaled_replica_batch_loss_val_prior = loss_diagonal_weighted_penalized_difference(
                     prior_mean, batch_posterior_sample_val,
                     prior_covariance_cholesky_inverse,
                     1)
@@ -193,7 +193,7 @@ def optimize_distributed(dist_strategy,
                                                                  sample_flag = True,
                                                                  infer_flag = False)
 
-            unscaled_replica_batch_loss_test_vae = loss_weighted_penalized_difference(
+            unscaled_replica_batch_loss_test_vae = loss_diagonal_weighted_penalized_difference(
                     batch_input_test, batch_likelihood_test,
                     noise_regularization_matrix, 1)
             unscaled_replica_batch_loss_test_iaf_posterior =\
@@ -201,7 +201,7 @@ def optimize_distributed(dist_strategy,
                                             batch_log_post_var_test,
                                             sample_flag = False,
                                             infer_flag = True)
-            unscaled_replica_batch_loss_test_prior = loss_weighted_penalized_difference(
+            unscaled_replica_batch_loss_test_prior = loss_diagonal_weighted_penalized_difference(
                     prior_mean, batch_posterior_sample_test,
                     prior_covariance_cholesky_inverse,
                     1)

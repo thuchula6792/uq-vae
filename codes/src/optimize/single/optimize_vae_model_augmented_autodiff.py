@@ -52,7 +52,7 @@ import pandas as pd
 from utils_training.metrics_vae import Metrics
 from utils_io.config_io import dump_attrdict_as_yaml
 from utils_training.functionals import\
-        loss_weighted_penalized_difference, loss_kld,\
+        loss_diagonal_weighted_penalized_difference, loss_kld,\
         relative_error
 
 import pdb #Equivalent of keyboard in MATLAB, just add "pdb.set_trace()"
@@ -97,7 +97,7 @@ def optimize(hyperp, options, filepaths,
                         nn.reparameterize(batch_post_mean_train, batch_log_post_var_train))
 
             batch_loss_train_vae =\
-                    loss_weighted_penalized_difference(
+                    loss_diagonal_weighted_penalized_difference(
                             batch_input_train, batch_input_pred_forward_model_train,
                             noise_regularization_matrix,
                             1)
@@ -109,7 +109,7 @@ def optimize(hyperp, options, filepaths,
             batch_loss_train_posterior =\
                     (1-hyperp.penalty_js)/hyperp.penalty_js *\
                     tf.reduce_sum(batch_log_post_var_train,axis=1) +\
-                    loss_weighted_penalized_difference(
+                    loss_diagonal_weighted_penalized_difference(
                             batch_latent_train, batch_post_mean_train,
                             1/tf.math.exp(batch_log_post_var_train/2),
                             (1-hyperp.penalty_js)/hyperp.penalty_js)
@@ -141,7 +141,7 @@ def optimize(hyperp, options, filepaths,
         batch_loss_val_posterior =\
                 (1-hyperp.penalty_js)/hyperp.penalty_js *\
                 tf.reduce_sum(batch_log_post_var_val,axis=1) +\
-                loss_weighted_penalized_difference(
+                loss_diagonal_weighted_penalized_difference(
                         batch_latent_val, batch_post_mean_val,
                         1/tf.math.exp(batch_log_post_var_val/2),
                         (1-hyperp.penalty_js)/hyperp.penalty_js)
@@ -166,7 +166,7 @@ def optimize(hyperp, options, filepaths,
         batch_loss_test_posterior =\
                 (1-hyperp.penalty_js)/hyperp.penalty_js *\
                 tf.reduce_sum(batch_log_post_var_test,axis=1) +\
-                loss_weighted_penalized_difference(
+                loss_diagonal_weighted_penalized_difference(
                         batch_latent_test, batch_post_mean_test,
                         1/tf.math.exp(batch_log_post_var_test/2),
                         (1-hyperp.penalty_js)/hyperp.penalty_js)

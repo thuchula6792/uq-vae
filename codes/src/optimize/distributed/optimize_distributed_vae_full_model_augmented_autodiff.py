@@ -52,7 +52,7 @@ import numpy as np
 from utils_training.metrics_distributed_vae import Metrics
 from utils_io.config_io import dump_attrdict_as_yaml
 from utils_training.functionals import\
-        loss_weighted_penalized_difference,\
+        loss_diagonal_weighted_penalized_difference,\
         loss_weighted_post_cov_full_penalized_difference,\
         loss_kld_full,\
         relative_error
@@ -117,7 +117,7 @@ def optimize_distributed(dist_strategy,
                             nn.reparameterize(batch_post_mean_train, batch_post_cov_chol_train))
 
                 unscaled_replica_batch_loss_train_vae =\
-                        loss_weighted_penalized_difference(
+                        loss_diagonal_weighted_penalized_difference(
                                 batch_input_train, batch_input_pred_forward_model_train,
                                 noise_regularization_matrix,
                                 1)

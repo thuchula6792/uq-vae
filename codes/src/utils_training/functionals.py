@@ -13,18 +13,14 @@ def loss_penalized_difference(true, pred, penalty):
     '''penalized squared error of the true and predicted values'''
     return penalty*true.shape[1]*tf.keras.losses.mean_squared_error(true, pred)
 
-def loss_weighted_penalized_difference(true, pred, weight_matrix, penalty):
-    '''weighted penalized squared error of the true and predicted values'''
+def loss_diagonal_weighted_penalized_difference(true, pred, weight_matrix, penalty):
+    '''weighted penalized squared error of the true and predicted values
+    for the special case where the weight matrix is a diagonal stored as rows'''
     if len(pred.shape) == 1:
         pred = tf.expand_dims(pred, axis=1)
-    if weight_matrix.shape[0] == weight_matrix.shape[1]: # If matrix is square
-        return penalty*true.shape[1]*tf.keras.losses.mean_squared_error(
-                tf.linalg.matmul(true, tf.transpose(weight_matrix)),
-                tf.linalg.matmul(pred, tf.transpose(weight_matrix)))
-    else: # Diagonal weight matrices with diagonals stored as rows
-        return penalty*true.shape[1]*tf.keras.losses.mean_squared_error(
-                tf.multiply(weight_matrix, true),
-                tf.multiply(weight_matrix, pred))
+    return penalty*true.shape[1]*tf.keras.losses.mean_squared_error(
+            tf.multiply(weight_matrix, true),
+            tf.multiply(weight_matrix, pred))
 
 ###############################################################################
 #                      Loss Diagonal Posterior Covariance                     #

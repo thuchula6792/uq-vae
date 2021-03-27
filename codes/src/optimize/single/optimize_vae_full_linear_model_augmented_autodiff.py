@@ -58,7 +58,7 @@ import pandas as pd
 from utils_training.metrics_vae import Metrics
 from utils_io.config_io import dump_attrdict_as_yaml
 from utils_training.functionals import\
-        loss_weighted_penalized_difference,\
+        loss_diagonal_weighted_penalized_difference,\
         loss_weighted_post_cov_full_penalized_difference,\
         loss_trace_likelihood,\
         loss_kld_full,\
@@ -130,7 +130,7 @@ def optimize(hyperp, options, filepaths,
                     loss_trace_likelihood(batch_post_cov_chol_train,
                             identity_otimes_likelihood_matrix,
                             1) +\
-                    loss_weighted_penalized_difference(
+                    loss_diagonal_weighted_penalized_difference(
                             batch_input_train, batch_input_pred_forward_model_train,
                             noise_regularization_matrix,
                             1)
