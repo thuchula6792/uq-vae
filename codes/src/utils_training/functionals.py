@@ -69,7 +69,7 @@ def loss_weighted_post_cov_full_penalized_difference(true, pred,
                     tf.transpose(tf.reshape(
                         post_cov_chol[m,:], (true.shape[1], true.shape[1]))),
                     tf.expand_dims(true[m,:] - pred[m,:], axis=1))], axis=0)
-    return penalty*batched_value
+    return penalty*tf.squeeze(batched_value)
 
 def weighted_inner_product_chol_solve(weight_matrix, vector):
     '''Evaluates data-misfit term weighted by the inverse of the full model
@@ -86,9 +86,10 @@ def loss_trace_likelihood(post_cov_chol,
     expectation of the likelihood does not require a Monte-Carlo approximation
     and so there is an extra trace term which is computed by this function
     '''
-    return penalty*tf.linalg.matmul(
-                post_cov_chol,
-                identity_otimes_likelihood_matrix.matmul(tf.transpose(post_cov_chol)))
+    return penalty*tf.reduce_sum(
+            tf.multiply(tf.transpose(post_cov_chol),
+                identity_otimes_likelihood_matrix.matmul(tf.transpose(post_cov_chol))),
+            axis=0)
 
 def loss_kld_full(post_mean, log_post_std, post_cov_chol,
                   prior_mean, prior_cov_inv, identity_otimes_prior_cov_inv,
@@ -97,9 +98,10 @@ def loss_kld_full(post_mean, log_post_std, post_cov_chol,
     model for the case where the model posterior possesses a full covariance
     matrix
     '''
-    trace_prior_cov_inv_times_cov_post = tf.linalg.matmul(
-                post_cov_chol,
-                identity_otimes_prior_cov_inv.matmul(tf.transpose(post_cov_chol)))
+    trace_prior_cov_inv_times_cov_post = tf.reduce_sum(
+            tf.multiply(tf.transpose(post_cov_chol),
+                identity_otimes_prior_cov_inv.matmul(tf.transpose(post_cov_chol))),
+            axis=0)
     prior_weighted_prior_mean_minus_post_mean = tf.reduce_sum(
             tf.multiply(tf.transpose(prior_mean - post_mean),
                 tf.linalg.matmul(prior_cov_inv, tf.transpose(prior_mean - post_mean))),

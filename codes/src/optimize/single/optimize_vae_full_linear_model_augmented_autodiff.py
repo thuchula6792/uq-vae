@@ -140,6 +140,7 @@ def optimize(hyperp, options, filepaths,
                             batch_post_cov_chol_train,
                             prior_mean, prior_cov_inv, identity_otimes_prior_cov_inv,
                             1)
+
             batch_loss_train_posterior =\
                     (1-hyperp.penalty_js)/hyperp.penalty_js *\
                     2*tf.reduce_sum(batch_log_post_std_train,axis=1) +\
@@ -163,7 +164,7 @@ def optimize(hyperp, options, filepaths,
         return gradients
 
     #=== Validation Step ===#
-    # @tf.function
+    @tf.function
     def val_step(batch_input_val, batch_latent_val):
         batch_post_mean_val, batch_log_post_std_val, batch_post_cov_chol_val\
                 = nn.encoder(batch_input_val)
@@ -190,7 +191,7 @@ def optimize(hyperp, options, filepaths,
         metrics.mean_loss_val_posterior(batch_loss_val_posterior)
 
     #=== Test Step ===#
-    # @tf.function
+    @tf.function
     def test_step(batch_input_test, batch_latent_test):
         batch_post_mean_test, batch_log_post_std_test, batch_post_cov_chol_test\
                 = nn.encoder(batch_input_test)
