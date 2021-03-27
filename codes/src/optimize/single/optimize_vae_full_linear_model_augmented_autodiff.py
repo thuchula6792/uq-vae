@@ -151,8 +151,9 @@ def optimize(hyperp, options, filepaths,
             batch_loss_train = -(-batch_loss_train_vae\
                                  -batch_loss_train_kld\
                                  -batch_loss_train_posterior)
+            batch_loss_train_mean = tf.reduce_mean(batch_loss_train, axis=0)
 
-        gradients = tape.gradient(batch_loss_train, nn.trainable_variables)
+        gradients = tape.gradient(batch_loss_train_mean, nn.trainable_variables)
         optimizer.apply_gradients(zip(gradients, nn.trainable_variables))
         metrics.mean_loss_train(batch_loss_train)
         metrics.mean_loss_train_vae(batch_loss_train_vae)
@@ -162,7 +163,7 @@ def optimize(hyperp, options, filepaths,
         return gradients
 
     #=== Validation Step ===#
-    @tf.function
+    # @tf.function
     def val_step(batch_input_val, batch_latent_val):
         batch_post_mean_val, batch_log_post_std_val, batch_post_cov_chol_val\
                 = nn.encoder(batch_input_val)
@@ -189,7 +190,7 @@ def optimize(hyperp, options, filepaths,
         metrics.mean_loss_val_posterior(batch_loss_val_posterior)
 
     #=== Test Step ===#
-    @tf.function
+    # @tf.function
     def test_step(batch_input_test, batch_latent_test):
         batch_post_mean_test, batch_log_post_std_test, batch_post_cov_chol_test\
                 = nn.encoder(batch_input_test)

@@ -93,7 +93,7 @@ def predict_and_plot(hyperp, options, filepaths):
         forward_model_solve = forward_model.discrete_exponential
 
     #=== Selecting Samples ===#
-    sample_number = 4
+    sample_number = 3
     parameter_test_sample = np.expand_dims(parameter_test[sample_number,:], 0)
     state_obs_test_sample = np.expand_dims(state_obs_test[sample_number,:], 0)
 

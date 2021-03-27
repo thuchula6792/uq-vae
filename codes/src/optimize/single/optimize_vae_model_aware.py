@@ -113,8 +113,9 @@ def optimize(hyperp, options, filepaths,
             batch_loss_train = -(-batch_loss_train_vae\
                                  -batch_loss_train_kld\
                                  -batch_loss_train_posterior)
+            batch_loss_train_mean = tf.reduce_mean(batch_loss_train, axis=0)
 
-        gradients = tape.gradient(batch_loss_train, nn.trainable_variables)
+        gradients = tape.gradient(batch_loss_train_mean, nn.trainable_variables)
         optimizer.apply_gradients(zip(gradients, nn.trainable_variables))
         metrics.mean_loss_train(batch_loss_train)
         metrics.mean_loss_train_posterior(batch_loss_train_posterior)
