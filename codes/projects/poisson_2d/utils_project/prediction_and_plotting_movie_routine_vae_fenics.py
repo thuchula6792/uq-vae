@@ -34,6 +34,7 @@ from neural_networks.nn_vae import VAE
 from utils_misc.positivity_constraints import positivity_constraint_exp,\
                                               positivity_constraint_log_exp
 from utils_io.make_movie import make_movie
+from utils_io.combine_movies import combine_movies
 
 # Import project utilities
 sys.path.insert(0, os.path.realpath('../../../../../fenics-simulations/src'))
@@ -160,3 +161,8 @@ def predict_and_plot(hyperp, options, filepaths):
                filepaths.directory_movie,
                'parameter_cross_section',
                2, 0, len(epoch_list))
+
+    combine_movies(filepaths.directory_movie + '/posterior_mean',
+                   filepaths.directory_movie + '/parameter_cross_section',
+                   filepaths.directory_movie,
+                   'posterior_mean_and_parameter_cross_section')
