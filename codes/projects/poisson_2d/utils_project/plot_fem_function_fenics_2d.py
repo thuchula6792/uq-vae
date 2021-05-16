@@ -8,6 +8,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 plt.ioff() # Turn interactive plotting off
+import matplotlib.lines as mlines
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 import matplotlib.tri as tri
@@ -21,7 +22,7 @@ def plot_fem_function_fenics_2d(function_space, nodal_values,
                                 cross_section_y,
                                 title, filepath,
                                 fig_size, colorbar_limits,
-                                plot_hline_flag):
+                                plot_hline_flag, line_colour):
 
     #=== Convert array to dolfin function ===#
     nodal_values_fe = convert_array_to_dolfin_function(function_space, nodal_values)
@@ -45,7 +46,9 @@ def plot_fem_function_fenics_2d(function_space, nodal_values,
         figure = ax.tricontourf(triangulation, nodal_values, v, extend='max')
 
     if plot_hline_flag == True:
-        plt.axhline(cross_section_y, color='r', linestyle='dashed', linewidth=3)
+        plt.axhline(cross_section_y, color=line_colour, linestyle='dashed', linewidth=3)
+        # line = mlines.Line2D([-1, 1], [-1, 1], color=line_colour, linestyle='dashed', linewidth=3)
+        # ax.add_line(line)
 
     divider = make_axes_locatable(ax)
     cax = divider.append_axes("right", size="5%", pad=0.05)

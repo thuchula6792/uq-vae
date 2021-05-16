@@ -6,7 +6,7 @@ num_hidden_nodes_decoder  : 500
 activation                : "relu"
 
 #=== Penalties ===#
-penalty_js                : 0.00001
+penalty_js                : 0.1
 
 #=== Data ===#
 num_data_train            : 1000

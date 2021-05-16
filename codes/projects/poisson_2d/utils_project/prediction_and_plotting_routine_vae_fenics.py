@@ -54,11 +54,11 @@ def predict_and_plot(hyperp, options, filepaths):
     options.mesh_point_1 = [-1,-1]
     options.mesh_point_2 = [1,1]
 
-    options.nx = 15
-    options.ny = 15
+    # options.nx = 15
+    # options.ny = 15
 
-    # options.nx = 50
-    # options.ny = 50
+    options.nx = 50
+    options.ny = 50
 
     options.num_obs_points = 10
     options.order_fe_space = 1
@@ -101,8 +101,8 @@ def predict_and_plot(hyperp, options, filepaths):
     nn.load_weights(filepaths.trained_nn)
 
     #=== Selecting Samples ===#
-    sample_number = 1
-    # sample_number = 128
+    # sample_number = 1
+    sample_number = 128
     parameter_test_sample = np.expand_dims(parameter_test[sample_number,:], 0)
     state_obs_test_sample = np.expand_dims(state_obs_test[sample_number,:], 0)
 
@@ -133,10 +133,10 @@ def predict_and_plot(hyperp, options, filepaths):
     print('================================')
 
     #=== Plot FEM Functions ===#
-    cross_section_y = 0.5
-    # cross_section_y = 0.0
+    # cross_section_y = 0.5
+    cross_section_y = 0.0
     plot_parameter_min = 0
-    plot_parameter_max = 6
+    plot_parameter_max = 6.0
     plot_variance_min = 0
     plot_variance_max = 1.3
     filename_extension = '_%d.png'%(sample_number)
@@ -145,19 +145,19 @@ def predict_and_plot(hyperp, options, filepaths):
                                 '',
                                 filepaths.figure_parameter_test + filename_extension,
                                 (5,5), (plot_parameter_min,plot_parameter_max),
-                                True)
+                                True, 'r')
     plot_fem_function_fenics_2d(meta_space, posterior_mean_pred,
                                 cross_section_y,
                                 '',
                                 filepaths.figure_posterior_mean + filename_extension,
                                 (5,5), (plot_parameter_min,plot_parameter_max),
-                                False)
+                                True, 'k')
     plot_fem_function_fenics_2d(meta_space, posterior_pred_draw,
                                 cross_section_y,
                                 '',
                                 filepaths.figure_parameter_pred + filename_extension,
                                 (5,5), (plot_parameter_min,plot_parameter_max),
-                                False)
+                                False, '')
     if options.obs_type == 'full':
         plot_fem_function_fenics_2d(meta_space, state_obs_test_sample,
                                     cross_section_y,
@@ -184,6 +184,6 @@ def predict_and_plot(hyperp, options, filepaths):
                                 '',
                                 filepaths.figure_posterior_covariance + filename_extension,
                                 (5,5), (plot_variance_min,plot_variance_max),
-                                False)
+                                False, '')
 
     print('Predictions plotted')
