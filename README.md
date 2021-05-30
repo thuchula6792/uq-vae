@@ -65,9 +65,6 @@ and can be found at: https://arxiv.org/abs/1912.04212
                                 training routine
 	* `training_routine_.py`:   Loads the data, constructs the neural
                                 network and runs the optimization routine
-	* `hyperparameter_optimization_training_routine_.py`: Optimization
-                                routine for Bayesian hyperparameter
-                                optimization
 	* `prediction_and_plotting_routine.py`:  Prediction routine; using trained network,
                                 form and save predictions given trained
                                 neural network
