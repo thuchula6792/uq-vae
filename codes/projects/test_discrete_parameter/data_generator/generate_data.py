@@ -63,11 +63,11 @@ class Options:
     discrete_exponential = False
 
     #=== Select Train or Test Set ===#
-    generate_train_data = False
-    generate_test_data = True
+    generate_train_data = True
+    generate_test_data = False
 
     #=== Data Properties ===#
-    num_data = 200
+    num_data = 5000
     mesh_dimensions = 100
     parameter_dimensions = 2
     num_obs_points = 20

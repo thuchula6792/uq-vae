@@ -1,15 +1,18 @@
 # Overview:
-We developed a variational inference based theoretical framework for uncertainty
-quantification in Bayesian inverse problems. Implementability of this theory is
-achieved through consideration of amortized inference over a dataset which, in
-turn, naturally lends itself to reparameterization by a neural network. The
-resulting variational autoencoder is able to perform rapid Bayesian inference on
-the parameters of interest.
+This mathematically justified framework offers a data-driven approach to
+uncertainty quantification for Bayesian inverse problems. When a neural network
+comes into play, the information contained within a training dataset is embedded into the
+network; the output of which quantifies the uncertainty in the underlying
+parameter estimation problem using this information.
 
 # Paper:
 The paper associated with this code is titled
 "Solving Bayesian Inverse Problems via Variational Autoencoders"
 and can be found at: https://arxiv.org/abs/1912.04212
+
+# Installation:
+In the `uq-vae` directory, run `conda env create --file environment.yml`. Then
+activate `uq_vae_env` to utilize the created environment.
 
 # Code Structure:
 * Below is a description of the source codes as well as the key codes in my
